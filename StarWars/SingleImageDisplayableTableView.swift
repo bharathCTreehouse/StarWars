@@ -20,22 +20,21 @@ extension SingleImageDisplayable {
     var backgroundColour: UIColor {
         return UIColor.white
     }
-    
 }
 
 
 class SingleImageDisplayableTableView: UITableView {
     
-    var imagesDisplayable: [SingleImageDisplayable] = []
+    var dataSourceForTableView: SingleImageWithTitleTableViewDataSource? = nil
     
     init(withImages images: [SingleImageDisplayable], tableViewStyle style: Style) {
-        imagesDisplayable = images
+        
         super.init(frame: .zero, style: style)
         translatesAutoresizingMaskIntoConstraints = false
         rowHeight = UITableView.automaticDimension
         estimatedRowHeight = 90.0
-        dataSource = self
-        register(UINib.init(nibName: "SingleImageTableViewCell", bundle: .main), forCellReuseIdentifier: "imageCell")
+        dataSourceForTableView = SingleImageWithTitleTableViewDataSource(withDataSource: images, forTableView: self)
+        dataSource = dataSourceForTableView
         self.tableFooterView = UIView.init()
     }
     
@@ -47,27 +46,9 @@ class SingleImageDisplayableTableView: UITableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-}
-
-extension SingleImageDisplayableTableView: UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return imagesDisplayable.count
+    deinit {
+        dataSourceForTableView = nil
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let image: UIImage = imagesDisplayable[indexPath.row].imageToDisplay
-        let imageDesc: NSAttributedString = imagesDisplayable[indexPath.row].attributedTitle
-        let backgroundColourToUse: UIColor = imagesDisplayable[indexPath.row].backgroundColour
-        
-        let cell: SingleImageTableViewCell = tableView.dequeueReusableCell(withIdentifier: "imageCell", for: indexPath) as! SingleImageTableViewCell
-        cell.update(withImage: image)
-        cell.update(withImageDescriptionTitle: imageDesc)
-        cell.update(withBackgroundColour: backgroundColourToUse)
-        
-        return cell
-    }
-    
     
 }

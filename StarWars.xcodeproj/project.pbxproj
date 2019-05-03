@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C0CE74F227C4E7300ABC5B2 /* SingleImageWithTitleTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0CE74E227C4E7200ABC5B2 /* SingleImageWithTitleTableViewDataSource.swift */; };
 		4CBCA3882276261400D6D793 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCA3872276261400D6D793 /* AppDelegate.swift */; };
 		4CBCA38A2276261400D6D793 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCA3892276261400D6D793 /* ViewController.swift */; };
 		4CBCA38D2276261400D6D793 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CBCA38B2276261400D6D793 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C0CE74E227C4E7200ABC5B2 /* SingleImageWithTitleTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageWithTitleTableViewDataSource.swift; sourceTree = "<group>"; };
 		4CBCA3842276261400D6D793 /* StarWars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarWars.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CBCA3872276261400D6D793 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CBCA3892276261400D6D793 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				4CBCA39D2276325000D6D793 /* SingleImageDisplayableTableView.swift */,
 				4CBCA39F227639FD00D6D793 /* SingleImageTableViewCell.swift */,
 				4CBCA3A0227639FD00D6D793 /* SingleImageTableViewCell.xib */,
+				4C0CE74E227C4E7200ABC5B2 /* SingleImageWithTitleTableViewDataSource.swift */,
 			);
 			path = StarWars;
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 				4CBCA3A1227639FD00D6D793 /* SingleImageTableViewCell.swift in Sources */,
 				4CBCA39E2276325000D6D793 /* SingleImageDisplayableTableView.swift in Sources */,
 				4CBCA39C22762D3300D6D793 /* StarWarsIntroductionViewData.swift in Sources */,
+				4C0CE74F227C4E7300ABC5B2 /* SingleImageWithTitleTableViewDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
