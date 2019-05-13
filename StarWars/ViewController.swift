@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     var starWarsIntroTableView: SingleImageDisplayableTableView? = nil
+    let apiClient: StarWarsAPIClient = StarWarsAPIClient()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,20 @@ class ViewController: UIViewController {
         starWarsIntroTableView!.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         self.title = "Star Wars"
+        
+        let characterEndpoint: StarWars = StarWars.character(.all)
+        let characterReq: URLRequest? = characterEndpoint.urlRequest
+        
+        apiClient.fetchAllCharacters(forRequest: characterReq!, withCompletionHandler: { (people: [Character], error: StarWarsError?) -> Void in
+            
+            if error == nil {
+                print("Count: \(people.count)")
+                print("PEOPLES: \(people)")
+            }
+            else {
+                print("Error: \(error!)")
+            }
+        })
         
     }
     

@@ -41,8 +41,4 @@ class SingleImageWithTitleTableViewDataSource: NSObject, UITableViewDataSource {
         
         return cell
     }
-    
-
-    
-    
 }

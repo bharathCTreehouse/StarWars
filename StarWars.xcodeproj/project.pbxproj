@@ -18,6 +18,11 @@
 		4CBCA39E2276325000D6D793 /* SingleImageDisplayableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCA39D2276325000D6D793 /* SingleImageDisplayableTableView.swift */; };
 		4CBCA3A1227639FD00D6D793 /* SingleImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCA39F227639FD00D6D793 /* SingleImageTableViewCell.swift */; };
 		4CBCA3A2227639FD00D6D793 /* SingleImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CBCA3A0227639FD00D6D793 /* SingleImageTableViewCell.xib */; };
+		8E2E76B02288A36F00901200 /* Transporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2E76AF2288A36F00901200 /* Transporter.swift */; };
+		8E2E76B22288A41900901200 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2E76B12288A41900901200 /* Character.swift */; };
+		8E2E76B42288A77B00901200 /* StarWars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2E76B32288A77B00901200 /* StarWars.swift */; };
+		8E7A906D2289D12B00292F83 /* StarWarsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7A906C2289D12B00292F83 /* StarWarsAPIClient.swift */; };
+		8E7A906F2289F9C000292F83 /* StarWarsFetchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7A906E2289F9C000292F83 /* StarWarsFetchResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +39,11 @@
 		4CBCA39D2276325000D6D793 /* SingleImageDisplayableTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageDisplayableTableView.swift; sourceTree = "<group>"; };
 		4CBCA39F227639FD00D6D793 /* SingleImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageTableViewCell.swift; sourceTree = "<group>"; };
 		4CBCA3A0227639FD00D6D793 /* SingleImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingleImageTableViewCell.xib; sourceTree = "<group>"; };
+		8E2E76AF2288A36F00901200 /* Transporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transporter.swift; sourceTree = "<group>"; };
+		8E2E76B12288A41900901200 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		8E2E76B32288A77B00901200 /* StarWars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWars.swift; sourceTree = "<group>"; };
+		8E7A906C2289D12B00292F83 /* StarWarsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsAPIClient.swift; sourceTree = "<group>"; };
+		8E7A906E2289F9C000292F83 /* StarWarsFetchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsFetchResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,20 +76,65 @@
 		4CBCA3862276261400D6D793 /* StarWars */ = {
 			isa = PBXGroup;
 			children = (
+				8E2E76AD2288869D00901200 /* Common */,
+				8E2E76AA2288856F00901200 /* IntroductionScreen */,
 				4CBCA3872276261400D6D793 /* AppDelegate.swift */,
-				4CBCA3892276261400D6D793 /* ViewController.swift */,
 				4CBCA38B2276261400D6D793 /* Main.storyboard */,
 				4CBCA38E2276261B00D6D793 /* Assets.xcassets */,
 				4CBCA3902276261B00D6D793 /* LaunchScreen.storyboard */,
 				4CBCA3932276261B00D6D793 /* Info.plist */,
+				8E2E76AF2288A36F00901200 /* Transporter.swift */,
+				8E2E76B12288A41900901200 /* Character.swift */,
+				8E2E76B32288A77B00901200 /* StarWars.swift */,
+				8E7A906C2289D12B00292F83 /* StarWarsAPIClient.swift */,
+				8E7A906E2289F9C000292F83 /* StarWarsFetchResult.swift */,
+			);
+			path = StarWars;
+			sourceTree = "<group>";
+		};
+		8E2E76AA2288856F00901200 /* IntroductionScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8E2E76AE2288884000901200 /* Controller */,
+				8E2E76AC228885E900901200 /* ViewModel */,
+				8E2E76AB228885CC00901200 /* Model */,
+			);
+			name = IntroductionScreen;
+			sourceTree = "<group>";
+		};
+		8E2E76AB228885CC00901200 /* Model */ = {
+			isa = PBXGroup;
+			children = (
 				4CBCA39922762C9700D6D793 /* StarWarsIntroductionData.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		8E2E76AC228885E900901200 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
 				4CBCA39B22762D3300D6D793 /* StarWarsIntroductionViewData.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		8E2E76AD2288869D00901200 /* Common */ = {
+			isa = PBXGroup;
+			children = (
 				4CBCA39D2276325000D6D793 /* SingleImageDisplayableTableView.swift */,
 				4CBCA39F227639FD00D6D793 /* SingleImageTableViewCell.swift */,
 				4CBCA3A0227639FD00D6D793 /* SingleImageTableViewCell.xib */,
 				4C0CE74E227C4E7200ABC5B2 /* SingleImageWithTitleTableViewDataSource.swift */,
 			);
-			path = StarWars;
+			name = Common;
+			sourceTree = "<group>";
+		};
+		8E2E76AE2288884000901200 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4CBCA3892276261400D6D793 /* ViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,11 +209,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E2E76B22288A41900901200 /* Character.swift in Sources */,
+				8E2E76B02288A36F00901200 /* Transporter.swift in Sources */,
 				4CBCA38A2276261400D6D793 /* ViewController.swift in Sources */,
 				4CBCA39A22762C9700D6D793 /* StarWarsIntroductionData.swift in Sources */,
+				8E2E76B42288A77B00901200 /* StarWars.swift in Sources */,
 				4CBCA3882276261400D6D793 /* AppDelegate.swift in Sources */,
 				4CBCA3A1227639FD00D6D793 /* SingleImageTableViewCell.swift in Sources */,
 				4CBCA39E2276325000D6D793 /* SingleImageDisplayableTableView.swift in Sources */,
+				8E7A906F2289F9C000292F83 /* StarWarsFetchResult.swift in Sources */,
+				8E7A906D2289D12B00292F83 /* StarWarsAPIClient.swift in Sources */,
 				4CBCA39C22762D3300D6D793 /* StarWarsIntroductionViewData.swift in Sources */,
 				4C0CE74F227C4E7300ABC5B2 /* SingleImageWithTitleTableViewDataSource.swift in Sources */,
 			);
