@@ -17,5 +17,4 @@ struct Transporter: Decodable {
     let length: String
     let model: String
     let crew: String
-    
 }

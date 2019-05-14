@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         let characterReq: URLRequest? = characterEndpoint.urlRequest
         
         apiClient.fetchAllCharacters(forRequest: characterReq!, withCompletionHandler: { (people: [Character], error: StarWarsError?) -> Void in
-            
+
             if error == nil {
                 print("Count: \(people.count)")
                 print("PEOPLES: \(people)")
@@ -47,6 +47,23 @@ class ViewController: UIViewController {
                 print("Error: \(error!)")
             }
         })
+        
+        
+        
+        
+//        let starshipEndpoint: StarWars = StarWars.starship(.all)
+//        let starshipReq: URLRequest? = starshipEndpoint.urlRequest
+//
+//        apiClient.fetchAllTransporters(forRequest: starshipReq!, withCompletionHandler: { (starships: [Transporter], error: StarWarsError?) -> Void in
+//
+//            if error == nil {
+//                print("Count: \(starships.count)")
+//                print("STARSHIPS: \(starships)")
+//            }
+//            else {
+//                print("Error: \(error!)")
+//            }
+//        })
         
     }
     
