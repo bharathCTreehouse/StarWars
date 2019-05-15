@@ -26,6 +26,7 @@ class ViewController: UIViewController {
         let starShipsViewData: StarWarsIntroductionViewData = StarWarsIntroductionViewData(withStarWarsIntroData: starShipsData)
         
         starWarsIntroTableView = SingleImageDisplayableTableView(withImages: [characterViewData, vehicleViewData, starShipsViewData])
+        starWarsIntroTableView!.delegate = self
         view.addSubview(starWarsIntroTableView!)
         starWarsIntroTableView!.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         starWarsIntroTableView!.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
@@ -34,44 +35,83 @@ class ViewController: UIViewController {
         
         self.title = "Star Wars"
         
-        let characterEndpoint: StarWars = StarWars.character(.all)
-        let characterReq: URLRequest? = characterEndpoint.urlRequest
-        
-        apiClient.fetchAllCharacters(forRequest: characterReq!, withCompletionHandler: { (people: [Character], error: StarWarsError?) -> Void in
-
-            if error == nil {
-                print("Count: \(people.count)")
-                print("PEOPLES: \(people)")
-            }
-            else {
-                print("Error: \(error!)")
-            }
-        })
-        
-        
-        
-        
-//        let starshipEndpoint: StarWars = StarWars.starship(.all)
-//        let starshipReq: URLRequest? = starshipEndpoint.urlRequest
-//
-//        apiClient.fetchAllTransporters(forRequest: starshipReq!, withCompletionHandler: { (starships: [Transporter], error: StarWarsError?) -> Void in
-//
-//            if error == nil {
-//                print("Count: \(starships.count)")
-//                print("STARSHIPS: \(starships)")
-//            }
-//            else {
-//                print("Error: \(error!)")
-//            }
-//        })
-        
     }
     
     
     deinit {
         starWarsIntroTableView = nil
     }
+}
 
 
+extension ViewController: UITableViewDelegate {
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.row == 0 {
+            
+            let characterEndpoint: StarWars = StarWars.character(.all)
+            let characterReq: URLRequest? = characterEndpoint.urlRequest
+            
+            apiClient.fetchAllCharacters(forRequest: characterReq!, withCompletionHandler: { (people: [Character], error: StarWarsError?) -> Void in
+                
+                if error == nil {
+                    
+                    let characterViewModel: [StarWarsCharacterViewData] = people.compactMap( { (input: Character) -> StarWarsCharacterViewData in
+                        
+                        return StarWarsCharacterViewData(withCharacter: input)
+                        
+                    })
+                    
+                    let viewModel: StarWarsCharacterViewData = characterViewModel.first!
+                    let detailVC: StarWarsCharacterViewController = StarWarsCharacterViewController(withDetailDataSource: viewModel)
+                    self.navigationController?.pushViewController(detailVC, animated: true)
+                    
+                }
+                else {
+                    print("Error: \(error!)")
+                }
+            })
+            
+        }
+        else {
+            
+            var transportRequest: URLRequest
+            
+            if indexPath.row == 1 {
+                let vehicleEndpoint: StarWars = StarWars.vehicle(.all)
+                transportRequest = vehicleEndpoint.urlRequest!
+            }
+            else {
+                let starshipEndpoint: StarWars = StarWars.starship(.all)
+                transportRequest = starshipEndpoint.urlRequest!
+            }
+            
+            
+            apiClient.fetchAllTransporters(forRequest: transportRequest, withCompletionHandler: { (movables: [Transporter], error: StarWarsError?) -> Void in
+                
+                if error == nil {
+                    
+                    let transporterViewModel: [StarWarsTransporterViewData] = movables.compactMap( { (input: Transporter) -> StarWarsTransporterViewData in
+                        
+                        return StarWarsTransporterViewData(withTransporter: input)
+                        
+                    })
+                    
+                    let viewModel: StarWarsTransporterViewData = transporterViewModel.first!
+                    let detailVC: StarWarsTransporterViewController = StarWarsTransporterViewController(withDetailDataSource: viewModel)
+                    self.navigationController?.pushViewController(detailVC, animated: true)
+                    
+                }
+                else {
+                    print("Error: \(error!)")
+                }
+                
+            })
+            
+        }
+        
+    }
 }
 

@@ -14,6 +14,8 @@ protocol StarWarsDetailDataSource {
     
     var attributeValueMappingPair: [ [StarWarsAttributeDisplay: String] ] { get }
     
+    //Separate protocol for this??
+    
     var attributeColor: UIColor { get }
     var attributeFont: UIFont { get }
     
@@ -29,12 +31,9 @@ class StarWarsDetailTableViewDataSource: NSObject, UITableViewDataSource {
     
     
     required init(withDetailDataSource dataSource: StarWarsDetailDataSource) {
-        
         data = dataSource
-        
-      
-
     }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

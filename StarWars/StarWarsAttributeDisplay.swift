@@ -23,7 +23,7 @@ enum StarWarsAttributeDisplay: String {
     
     var canBeConvertedToAlternateUnit: Bool {
         switch self {
-            case .height, .cost: return true
+            case .height, .cost, .length: return true
             default: return false
         }
     }

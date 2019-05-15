@@ -25,6 +25,8 @@ class StarWarsDetailTableView: UITableView {
         self.register(UINib.init(nibName: "StarWarsWithAccessoryDetailTableViewCell", bundle: .main), forCellReuseIdentifier: "accessoryDetailCell")
         
         dataSource = tableViewDataSource
+        estimatedRowHeight = 90
+        rowHeight = UITableView.automaticDimension
     }
     
     required init?(coder aDecoder: NSCoder) {
