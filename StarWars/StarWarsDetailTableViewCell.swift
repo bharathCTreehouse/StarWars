@@ -19,7 +19,6 @@ class StarWarsDetailTableViewCell: UITableViewCell {
         // Initialization code
         self.backgroundColor = UIColor.init(red: 26.0/155.0, green: 32.0/155.0, blue: 36.0/155.0, alpha: 1.0)
         
-        self.layoutSubviews()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
