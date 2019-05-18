@@ -63,16 +63,31 @@ class StarWarsDetailTableViewDataSource: NSObject, UITableViewDataSource {
         }
         else {
             
-            let cell: StarWarsWithAccessoryDetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "accessoryDetailCell", for: indexPath) as! StarWarsWithAccessoryDetailTableViewCell
+            var cell: UITableViewCell
             
-            cell.attributeLabel.textColor = data.attributeColor
-            cell.attributeLabel.font = data.attributeFont
-            
-            cell.valueLabel.textColor = data.attributeValueColor
-            cell.valueLabel.font = data.attributeValueFont
-            
-            cell.attributeLabel.text = attribute.rawValue
-            cell.valueLabel.text = mappingPair.values.first!
+            if attribute == .length || attribute == .height {
+                
+                cell = tableView.dequeueReusableCell(withIdentifier: "lengthToggleCell", for: indexPath)
+                
+                let lengthUnitCell: StarWarsLengthUnitToggleTableViewCell = (cell as! StarWarsLengthUnitToggleTableViewCell)
+                
+                
+                lengthUnitCell.updateWith(dataMapper: mappingPair)
+                lengthUnitCell.updateWith(dataSource: data)
+                
+            }
+            else {
+                
+                //Cost
+                
+                cell = tableView.dequeueReusableCell(withIdentifier: "costToggleCell", for: indexPath)
+                
+                let costUnitCell: StarWarsCostUnitToggleTableViewCell = (cell as! StarWarsCostUnitToggleTableViewCell)
+                
+                
+                costUnitCell.updateWith(dataMapper: mappingPair)
+                costUnitCell.updateWith(dataSource: data)
+            }
             
             return cell
             
@@ -80,3 +95,4 @@ class StarWarsDetailTableViewDataSource: NSObject, UITableViewDataSource {
         
     }
 }
+

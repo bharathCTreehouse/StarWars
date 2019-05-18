@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StarWarsAccessoryDetailView" customModule="StarWars" customModuleProvider="target">
+            <connections>
+                <outlet property="attributeLabel" destination="CFt-8x-u1q" id="Tql-6L-jmq"/>
+                <outlet property="attributeValueLabel" destination="itv-QX-n2D" id="Mm4-Mx-J5u"/>
+                <outlet property="unitToggleSegmentControl" destination="oAx-0H-uu3" id="N06-O2-7zD"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="ijC-8x-hsZ">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="attribute" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFt-8x-u1q">
+                    <rect key="frame" x="16" y="60" width="65.5" height="820"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="value" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="itv-QX-n2D">
+                    <rect key="frame" x="116.5" y="60" width="120.5" height="820"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oAx-0H-uu3">
+                    <rect key="frame" x="277" y="60" width="121" height="787"/>
+                    <segments>
+                        <segment title="First"/>
+                        <segment title="Second"/>
+                    </segments>
+                    <connections>
+                        <action selector="segmentControlTappedWithSender:" destination="-1" eventType="valueChanged" id="sRQ-SP-uP0"/>
+                    </connections>
+                </segmentedControl>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="fSY-DR-Prc" firstAttribute="trailing" secondItem="oAx-0H-uu3" secondAttribute="trailing" constant="16" id="2fm-Ue-dbP"/>
+                <constraint firstItem="fSY-DR-Prc" firstAttribute="bottom" secondItem="oAx-0H-uu3" secondAttribute="bottom" constant="16" id="6ZK-eN-3hl"/>
+                <constraint firstItem="CFt-8x-u1q" firstAttribute="top" secondItem="fSY-DR-Prc" secondAttribute="top" constant="16" id="Bth-br-637"/>
+                <constraint firstItem="oAx-0H-uu3" firstAttribute="leading" secondItem="itv-QX-n2D" secondAttribute="trailing" constant="40" id="JsH-VK-qNF"/>
+                <constraint firstAttribute="bottom" secondItem="itv-QX-n2D" secondAttribute="bottom" constant="16" id="MtO-vJ-Dck"/>
+                <constraint firstItem="itv-QX-n2D" firstAttribute="top" secondItem="fSY-DR-Prc" secondAttribute="top" constant="16" id="RWL-Hn-gw1"/>
+                <constraint firstItem="CFt-8x-u1q" firstAttribute="leading" secondItem="ijC-8x-hsZ" secondAttribute="leading" constant="16" id="UQs-lV-bon"/>
+                <constraint firstAttribute="bottom" secondItem="CFt-8x-u1q" secondAttribute="bottom" constant="16" id="fvg-Ws-RFw"/>
+                <constraint firstItem="oAx-0H-uu3" firstAttribute="top" secondItem="fSY-DR-Prc" secondAttribute="top" constant="16" id="tur-Al-oJI"/>
+                <constraint firstItem="itv-QX-n2D" firstAttribute="leading" secondItem="CFt-8x-u1q" secondAttribute="trailing" constant="35" id="ygj-iy-Zpb"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fSY-DR-Prc"/>
+            <point key="canvasLocation" x="47.826086956521742" y="-30.133928571428569"/>
+        </view>
+    </objects>
+</document>

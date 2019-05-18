@@ -18,6 +18,8 @@ class StarWarsTransporterViewController: StarWarsDetailViewController {
         
         transporterDetailDataSource = dataSource as! StarWarsTransporterViewData
         super.init(withDetailDataSource: dataSource)
+        addLengthUnitToggleNotificationObserver()
+        addCostUnitToggleNotificationObserver()
     }
     
     
@@ -25,4 +27,47 @@ class StarWarsTransporterViewController: StarWarsDetailViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
 }
+
+
+extension StarWarsTransporterViewController {
+    
+    func addLengthUnitToggleNotificationObserver() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(lengthUnitToggleTriggered(withNotification:)), name: NSNotification.Name(rawValue: "StarWarsLengthUnitChanged"), object: nil)
+        
+    }
+    
+    
+    @objc func lengthUnitToggleTriggered(withNotification notification: Notification) {
+        
+        transporterDetailDataSource.toggleLengthUnit()
+        reloadDetailTableView(atIndexPath: IndexPath(row: 2, section: 0))
+
+    }
+}
+
+
+
+extension StarWarsTransporterViewController {
+    
+    func addCostUnitToggleNotificationObserver() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(costUnitToggleTriggered(withNotification:)), name: NSNotification.Name(rawValue: "StarWarsCostUnitChanged"), object: nil)
+        
+    }
+    
+    
+    @objc func costUnitToggleTriggered(withNotification notification: Notification) {
+        
+        print("costUnitToggleTriggered--Transporter")
+
+    }
+    
+}
+

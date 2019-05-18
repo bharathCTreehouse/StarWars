@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum StarWarsError: Swift.Error {
+enum StarWarsError: Error {
     case noInternetConnection
     case invalidData
     case jsonParsingFailure(message: String)

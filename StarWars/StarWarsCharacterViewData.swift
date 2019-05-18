@@ -14,13 +14,16 @@ class StarWarsCharacterViewData: StarWarsViewData {
     
     let starWarsCharacter: Character
     
+    
     init(withCharacter person: Character) {
         starWarsCharacter = person
+        super.init(withLengthValue: person.height, lengthUnit: .metres)
     }
+    
     
     override var attributeValueMappingPair: [[StarWarsAttributeDisplay : String]] {
         
-        return [ [.born:starWarsCharacter.birthYear], [.home:starWarsCharacter.homeworld], [.height:starWarsCharacter.height],
+        return [ [.born:starWarsCharacter.birthYear], [.home:starWarsCharacter.homeworld], [.height:"\(currentLengthValue)\(currentLengthUnit.displayValue)"],
                  [.eyes:starWarsCharacter.eyeColor], [.hair:starWarsCharacter.hairColor] ]
     }
     

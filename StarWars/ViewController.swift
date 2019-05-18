@@ -99,9 +99,16 @@ extension ViewController: UITableViewDelegate {
                         
                     })
                     
-                    let viewModel: StarWarsTransporterViewData = transporterViewModel.first!
-                    let detailVC: StarWarsTransporterViewController = StarWarsTransporterViewController(withDetailDataSource: viewModel)
-                    self.navigationController?.pushViewController(detailVC, animated: true)
+                    if transporterViewModel.isEmpty == false {
+                        
+                        let viewModel: StarWarsTransporterViewData = transporterViewModel.first!
+                        let detailVC: StarWarsTransporterViewController = StarWarsTransporterViewController(withDetailDataSource: viewModel)
+                        self.navigationController?.pushViewController(detailVC, animated: true)
+                    }
+                    else {
+                        print("Error")
+                    }
+                    
                     
                 }
                 else {

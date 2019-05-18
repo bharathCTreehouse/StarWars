@@ -9,28 +9,36 @@
 import Foundation
 import UIKit
 
+
 enum UnitForLength {
+    
     case metres
-    case centimeters
+    case inches
     
     var displayValue: String {
         
         if self == .metres {
             return "m"
         }
-        else if self == .centimeters {
-            return "cm"
+        else if self == .inches {
+            return "inc"
         }
         return ""
     }
 }
 
 
+
 class StarWarsViewData: StarWarsDetailDataSource {
     
-    var currentLengthValue: String = ""
-    var currentLengthUnit: UnitForLength = .metres
+    var currentLengthValue: String
+    var currentLengthUnit: UnitForLength
     
+    
+    init(withLengthValue value: String, lengthUnit unit: UnitForLength) {
+        currentLengthValue = value
+        currentLengthUnit = unit
+    }
     
     var attributeValueMappingPair: [[StarWarsAttributeDisplay : String]] {
         return [[:]]
@@ -49,6 +57,31 @@ class StarWarsViewData: StarWarsDetailDataSource {
     }
     var attributeValueFont: UIFont {
         return UIFont.boldSystemFont(ofSize: 21.0)
+    }
+    
+    
+    
+    func toggleLengthUnit() {
+        
+        let length: Double? = Double(currentLengthValue)
+        
+        if let length = length {
+            
+            if currentLengthUnit == .metres {
+                
+                //convert to inches
+                currentLengthValue = String((length * 39.37))
+                currentLengthUnit = .inches
+            }
+            else if currentLengthUnit == .inches {
+                
+                //convert to metres
+                currentLengthValue = String((length / 39.37))
+                currentLengthUnit = .metres
+
+            }
+        }
+        
     }
     
 }
