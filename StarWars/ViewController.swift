@@ -65,7 +65,7 @@ extension ViewController: UITableViewDelegate {
                     })
                     
                     let viewModel: StarWarsCharacterViewData = characterViewModel.first!
-                    let detailVC: StarWarsCharacterViewController = StarWarsCharacterViewController(withDetailDataSource: viewModel)
+                    let detailVC: StarWarsCharacterViewController = StarWarsCharacterViewController(withDetailDataSource: viewModel, listOfCharacters: people)
                     self.navigationController?.pushViewController(detailVC, animated: true)
                     
                 }
@@ -102,7 +102,7 @@ extension ViewController: UITableViewDelegate {
                     if transporterViewModel.isEmpty == false {
                         
                         let viewModel: StarWarsTransporterViewData = transporterViewModel.first!
-                        let detailVC: StarWarsTransporterViewController = StarWarsTransporterViewController(withDetailDataSource: viewModel)
+                        let detailVC: StarWarsTransporterViewController = StarWarsTransporterViewController(withDetailDataSource: viewModel, listOfTransporters: movables)
                         self.navigationController?.pushViewController(detailVC, animated: true)
                     }
                     else {

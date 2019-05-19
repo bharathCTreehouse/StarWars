@@ -13,10 +13,13 @@ import UIKit
 class StarWarsTransporterViewController: StarWarsDetailViewController {
     
     var transporterDetailDataSource: StarWarsTransporterViewData
+    var allTransporters: [Transporter]
     
-    override init(withDetailDataSource dataSource: StarWarsDetailDataSource) {
+   
+    init(withDetailDataSource dataSource: StarWarsTransporterViewData, listOfTransporters: [Transporter]) {
         
-        transporterDetailDataSource = dataSource as! StarWarsTransporterViewData
+        transporterDetailDataSource = dataSource
+        allTransporters = listOfTransporters
         super.init(withDetailDataSource: dataSource)
         addLengthUnitToggleNotificationObserver()
         addCostUnitToggleNotificationObserver()
@@ -26,6 +29,24 @@ class StarWarsTransporterViewController: StarWarsDetailViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    override func selectedPickerIndex(index: Int) {
+        let selectedTransporter: Transporter = allTransporters[index]
+        transporterDetailDataSource = StarWarsTransporterViewData(withTransporter: selectedTransporter)
+        detailDataSource = transporterDetailDataSource
+        super.selectedPickerIndex(index: index)
+    }
+    
+    
+    override var allNames: [String] {
+        
+        let names: [String] = allTransporters.compactMap({ (transporter: Transporter) -> String in
+            return transporter.name
+        })
+        return names
+    }
+    
     
     
     deinit {

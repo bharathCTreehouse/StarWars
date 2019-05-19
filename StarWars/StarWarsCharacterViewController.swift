@@ -13,11 +13,13 @@ import UIKit
 class StarWarsCharacterViewController: StarWarsDetailViewController {
     
     var characterDetailDataSource: StarWarsCharacterViewData
+    let allCharacters: [Character]
     
     
-    override init(withDetailDataSource dataSource: StarWarsDetailDataSource) {
+    init(withDetailDataSource dataSource: StarWarsCharacterViewData, listOfCharacters: [Character]) {
         
-        characterDetailDataSource = dataSource as! StarWarsCharacterViewData
+        characterDetailDataSource = dataSource
+        allCharacters = listOfCharacters
         super.init(withDetailDataSource: dataSource)
         addLengthUnitToggleNotificationObserver()
     }
@@ -27,6 +29,24 @@ class StarWarsCharacterViewController: StarWarsDetailViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    override func selectedPickerIndex(index: Int) {
+        let selectedPerson: Character = allCharacters[index]
+        characterDetailDataSource = StarWarsCharacterViewData(withCharacter: selectedPerson)
+        detailDataSource = characterDetailDataSource
+        super.selectedPickerIndex(index: index)
+    }
+    
+    
+    override var allNames: [String] {
+        
+        let names: [String] = allCharacters.compactMap({ (person: Character) -> String in
+            
+            return person.name
+        })
+        return names
+    }
+
     
     deinit {
         NotificationCenter.default.removeObserver(self)

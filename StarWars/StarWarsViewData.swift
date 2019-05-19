@@ -21,7 +21,7 @@ enum UnitForLength {
             return "m"
         }
         else if self == .inches {
-            return "inc"
+            return "inches"
         }
         return ""
     }
@@ -67,16 +67,21 @@ class StarWarsViewData: StarWarsDetailDataSource {
         
         if let length = length {
             
+            let nf: NumberFormatter = NumberFormatter()
+            nf.maximumFractionDigits = 1
+            
             if currentLengthUnit == .metres {
                 
                 //convert to inches
-                currentLengthValue = String((length * 39.37))
+                let value: NSNumber = (NSNumber(value: length * 39.37))
+                currentLengthValue = nf.string(from: value) ?? ""
                 currentLengthUnit = .inches
             }
             else if currentLengthUnit == .inches {
                 
                 //convert to metres
-                currentLengthValue = String((length / 39.37))
+                let value: NSNumber = (NSNumber(value: length / 39.37))
+                currentLengthValue = nf.string(from: value) ?? ""
                 currentLengthUnit = .metres
 
             }

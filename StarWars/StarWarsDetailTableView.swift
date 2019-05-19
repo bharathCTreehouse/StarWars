@@ -28,6 +28,13 @@ class StarWarsDetailTableView: UITableView {
         dataSource = tableViewDataSource
         estimatedRowHeight = 90
         rowHeight = UITableView.automaticDimension
+        
+        self.tableFooterView = UIView(frame: .zero)
+    }
+    
+    
+    func updateDataSource(_ dataSource:StarWarsDetailDataSource) {
+        tableViewDataSource.updateWithDataSource(dataSource)
     }
     
     

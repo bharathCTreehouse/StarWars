@@ -27,10 +27,15 @@ protocol StarWarsDetailDataSource {
 
 class StarWarsDetailTableViewDataSource: NSObject, UITableViewDataSource {
     
-    let data: StarWarsDetailDataSource
+    private(set) var data: StarWarsDetailDataSource
     
     
     required init(withDetailDataSource dataSource: StarWarsDetailDataSource) {
+        data = dataSource
+    }
+    
+    
+    func updateWithDataSource(_ dataSource:StarWarsDetailDataSource) {
         data = dataSource
     }
     

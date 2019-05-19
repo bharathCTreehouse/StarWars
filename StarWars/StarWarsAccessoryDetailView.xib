@@ -28,8 +28,8 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="value" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="itv-QX-n2D">
-                    <rect key="frame" x="116.5" y="60" width="120.5" height="820"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="itv-QX-n2D">
+                    <rect key="frame" x="116.5" y="60" width="140.5" height="820"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -50,7 +50,7 @@
                 <constraint firstItem="fSY-DR-Prc" firstAttribute="trailing" secondItem="oAx-0H-uu3" secondAttribute="trailing" constant="16" id="2fm-Ue-dbP"/>
                 <constraint firstItem="fSY-DR-Prc" firstAttribute="bottom" secondItem="oAx-0H-uu3" secondAttribute="bottom" constant="16" id="6ZK-eN-3hl"/>
                 <constraint firstItem="CFt-8x-u1q" firstAttribute="top" secondItem="fSY-DR-Prc" secondAttribute="top" constant="16" id="Bth-br-637"/>
-                <constraint firstItem="oAx-0H-uu3" firstAttribute="leading" secondItem="itv-QX-n2D" secondAttribute="trailing" constant="40" id="JsH-VK-qNF"/>
+                <constraint firstItem="oAx-0H-uu3" firstAttribute="leading" secondItem="itv-QX-n2D" secondAttribute="trailing" constant="20" id="JsH-VK-qNF"/>
                 <constraint firstAttribute="bottom" secondItem="itv-QX-n2D" secondAttribute="bottom" constant="16" id="MtO-vJ-Dck"/>
                 <constraint firstItem="itv-QX-n2D" firstAttribute="top" secondItem="fSY-DR-Prc" secondAttribute="top" constant="16" id="RWL-Hn-gw1"/>
                 <constraint firstItem="CFt-8x-u1q" firstAttribute="leading" secondItem="ijC-8x-hsZ" secondAttribute="leading" constant="16" id="UQs-lV-bon"/>

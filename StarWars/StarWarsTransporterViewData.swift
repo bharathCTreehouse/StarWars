@@ -22,7 +22,7 @@ class StarWarsTransporterViewData: StarWarsViewData {
     
     override var attributeValueMappingPair: [[StarWarsAttributeDisplay : String]] {
         
-        return [ [.make:starWarsTransporter.manufacturer], [.cost:starWarsTransporter.costInCredits], [.length:"\(currentLengthValue)\(currentLengthUnit.displayValue)"],
+        return [ [.make:starWarsTransporter.manufacturer], [.cost:starWarsTransporter.costInCredits], [.length:"\(Double(currentLengthValue) ?? 0.0) \(currentLengthUnit.displayValue)"],
                  [.brand:starWarsTransporter.model], [.crew:starWarsTransporter.crew] ]
     }
     
