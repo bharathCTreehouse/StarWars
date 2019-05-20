@@ -23,7 +23,7 @@ class StarWarsCharacterViewData: StarWarsViewData {
     
     override var attributeValueMappingPair: [[StarWarsAttributeDisplay : String]] {
         
-        return [ [.born:starWarsCharacter.birthYear], [.home:starWarsCharacter.homeworld], [.height:"\(Double(currentLengthValue) ?? 0.0) \(currentLengthUnit.displayValue)"],
+        return [ [.born:starWarsCharacter.birthYear], [.home:starWarsCharacter.home ?? "---"], [.height:"\(Double(currentLengthValue) ?? 0.0) \(currentLengthUnit.displayValue)"],
                  [.eyes:starWarsCharacter.eyeColor], [.hair:starWarsCharacter.hairColor] ]
     }
     

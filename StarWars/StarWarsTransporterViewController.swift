@@ -50,9 +50,9 @@ class StarWarsTransporterViewController: StarWarsDetailViewController {
     
     override var facts: [[String : String]] {
         
-        let heights: [Int] = allTransporters.compactMap { return Int($0.length)}
-        let lowestHeight: Int? = heights.min()
-        let highestHeight: Int? = heights.max()
+        let heights: [Double] = allTransporters.compactMap { return Double($0.length)}
+        let lowestHeight: Double? = heights.min()
+        let highestHeight: Double? = heights.max()
         
         if let lowestHeight = lowestHeight, let highestHeight = highestHeight {
             

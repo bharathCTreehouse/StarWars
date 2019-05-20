@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct Character: Decodable {
+class Character: Decodable {
     
     let name: String
     let birthYear: String
@@ -17,6 +17,15 @@ struct Character: Decodable {
     let eyeColor: String
     let hairColor: String
     let homeworld: String
+    var home: String? = nil
+}
+
+
+extension Character {
+    
+    var homeURL: URL? {
+        return URL(string: homeworld)
+    }
 }
 
 

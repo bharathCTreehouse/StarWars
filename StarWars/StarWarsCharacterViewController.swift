@@ -30,6 +30,29 @@ class StarWarsCharacterViewController: StarWarsDetailViewController {
     }
     
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        
+        let characterHomeOpQueue: OperationQueue = OperationQueue.init()
+        
+        let homelessCharacters: [Character] = allCharacters.filter( { (person: Character) -> Bool in
+            return (person.home == nil)
+        })
+        
+        if homelessCharacters.isEmpty == false {
+            
+            let characterOps: [StarWarsFetchCharacterHomeOperation] = homelessCharacters.compactMap ( { StarWarsFetchCharacterHomeOperation(withPerson: $0, delegate: self) } )
+            
+            if characterOps.isEmpty == false {
+                
+                characterHomeOpQueue.addOperations(characterOps, waitUntilFinished: false)
+            }
+        }
+    }
+    
+    
     override func selectedPickerIndex(index: Int) {
         let selectedPerson: Character = allCharacters[index]
         characterDetailDataSource = StarWarsCharacterViewData(withCharacter: selectedPerson)
@@ -50,9 +73,9 @@ class StarWarsCharacterViewController: StarWarsDetailViewController {
     
     override var facts: [[String : String]] {
         
-        let heights: [Int] = allCharacters.compactMap { return Int($0.height)}
-        let lowestHeight: Int? = heights.min()
-        let highestHeight: Int? = heights.max()
+        let heights: [Double] = allCharacters.compactMap { return Double($0.height)}
+        let lowestHeight: Double? = heights.min()
+        let highestHeight: Double? = heights.max()
         
         if let lowestHeight = lowestHeight, let highestHeight = highestHeight {
             
@@ -89,4 +112,20 @@ extension StarWarsCharacterViewController {
         characterDetailDataSource.toggleLengthUnit()
         reloadDetailTableView(atIndexPath: IndexPath(row: 2, section: 0))
     }
+}
+
+
+extension StarWarsCharacterViewController: FetchCharacterHomeOperationCompletionProtocol {
+    
+    
+    func homeFetchedForCharacter(withName name: String) {
+        
+        let currentPersonName: String = characterDetailDataSource.starWarsCharacter.name
+        
+        if name == currentPersonName {
+            reloadDetailTableView(atIndexPath: IndexPath(row: 1, section: 0))
+        }
+    }
+    
+    
 }
