@@ -48,6 +48,25 @@ class StarWarsTransporterViewController: StarWarsDetailViewController {
     }
     
     
+    override var facts: [[String : String]] {
+        
+        let heights: [Int] = allTransporters.compactMap { return Int($0.length)}
+        let lowestHeight: Int? = heights.min()
+        let highestHeight: Int? = heights.max()
+        
+        if let lowestHeight = lowestHeight, let highestHeight = highestHeight {
+            
+            let lowestHtName: String = self.allTransporters[heights.firstIndex(of: lowestHeight)!].name
+            let highestHtName: String = self.allTransporters[heights.firstIndex(of: highestHeight)!].name
+            return [["Smallest": lowestHtName], ["Largest": highestHtName]]
+        }
+        else {
+            return super.facts
+        }
+    }
+
+    
+    
     
     deinit {
         NotificationCenter.default.removeObserver(self)

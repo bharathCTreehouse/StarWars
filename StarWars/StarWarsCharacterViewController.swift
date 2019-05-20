@@ -46,7 +46,26 @@ class StarWarsCharacterViewController: StarWarsDetailViewController {
         })
         return names
     }
+    
+    
+    override var facts: [[String : String]] {
+        
+        let heights: [Int] = allCharacters.compactMap { return Int($0.height)}
+        let lowestHeight: Int? = heights.min()
+        let highestHeight: Int? = heights.max()
+        
+        if let lowestHeight = lowestHeight, let highestHeight = highestHeight {
+            
+            let lowestHtName: String = self.allCharacters[heights.firstIndex(of: lowestHeight)!].name
+            let highestHtName: String = self.allCharacters[heights.firstIndex(of: highestHeight)!].name
+            return [["Smallest": lowestHtName], ["Largest": highestHtName]]
+        }
+        else {
+            return super.facts
+        }
+    }
 
+    
     
     deinit {
         NotificationCenter.default.removeObserver(self)

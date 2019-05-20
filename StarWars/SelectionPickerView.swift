@@ -49,7 +49,7 @@ class SelectionPickerView: UIView {
         picketView.delegate = self
         picketView.dataSource = self
         
-        backgroundColor = UIColor.yellow
+        backgroundColor = UIColor.white
         
     }
     

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StarWarsFactsView" customModule="StarWars" customModuleProvider="target">
+            <connections>
+                <outlet property="firstAttributeLabel" destination="FSY-QV-E2W" id="POc-UT-PDv"/>
+                <outlet property="firstValueLabel" destination="LCv-HC-84F" id="6If-P0-psO"/>
+                <outlet property="secondAttributeLabel" destination="baI-3e-mrn" id="CUB-du-fpU"/>
+                <outlet property="secondValueLabel" destination="LAH-Wo-8Gg" id="kmS-hf-th7"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" text="attribute1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSY-QV-E2W">
+                    <rect key="frame" x="16" y="52" width="73" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="value1" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCv-HC-84F">
+                    <rect key="frame" x="109" y="52" width="289" height="23"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="attribute2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baI-3e-mrn">
+                    <rect key="frame" x="16" y="81" width="75" height="773"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="value2" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAH-Wo-8Gg">
+                    <rect key="frame" x="111" y="83" width="287" height="771"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="LCv-HC-84F" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="2Tj-Gc-mLh"/>
+                <constraint firstItem="FSY-QV-E2W" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="48o-ZF-mh1"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="LCv-HC-84F" secondAttribute="trailing" constant="16" id="5Qs-P5-bNt"/>
+                <constraint firstItem="baI-3e-mrn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="Dsl-01-7wX"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="LAH-Wo-8Gg" secondAttribute="bottom" constant="8" id="Smw-40-ktk"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="baI-3e-mrn" secondAttribute="bottom" constant="8" id="WqU-1e-G21"/>
+                <constraint firstItem="LAH-Wo-8Gg" firstAttribute="top" secondItem="LCv-HC-84F" secondAttribute="bottom" constant="8" id="YFG-Yq-dis"/>
+                <constraint firstItem="LCv-HC-84F" firstAttribute="leading" secondItem="FSY-QV-E2W" secondAttribute="trailing" constant="20" id="cy2-Vg-Q5X"/>
+                <constraint firstItem="FSY-QV-E2W" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="eOu-Ha-VFV"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="LAH-Wo-8Gg" secondAttribute="trailing" constant="16" id="meP-CK-SJG"/>
+                <constraint firstItem="baI-3e-mrn" firstAttribute="top" secondItem="FSY-QV-E2W" secondAttribute="bottom" constant="8" id="nd9-9P-0ag"/>
+                <constraint firstItem="LAH-Wo-8Gg" firstAttribute="leading" secondItem="baI-3e-mrn" secondAttribute="trailing" constant="20" id="oJY-fG-iCh"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+</document>
