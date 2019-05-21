@@ -28,26 +28,28 @@ class StarWarsFetchOperation: Operation {
     
     override func main() {
         
-        if self.isCancelled == false {
+        if self.isCancelled == true {
+            return
+        }
+        
+        do {
+            let data: Data = try Data.init(contentsOf: fetchUrl)
             
-            do {
-                let data: Data = try Data.init(contentsOf: fetchUrl)
-                if data.isEmpty == false {
-                    jsonData = data
-                }
-                else {
-                    return
-                }
+            if self.isCancelled == true {
+                return
             }
-            catch {
+            if data.isEmpty == false {
+                jsonData = data
+            }
+            else {
                 return
             }
         }
-        else {
+        catch {
             return
         }
+        
     }
-    
 }
 
 

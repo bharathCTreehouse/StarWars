@@ -12,15 +12,15 @@ import UIKit
 
 class StarWarsCharacterViewController: StarWarsDetailViewController {
     
-    var characterDetailDataSource: StarWarsCharacterViewData
     let allCharacters: [Character]
+    var characterHomeOpQueue: OperationQueue? = OperationQueue.init()
+
     
     
-    init(withDetailDataSource dataSource: StarWarsCharacterViewData, listOfCharacters: [Character]) {
+    init(withListOfCharacters characters: [Character]) {
         
-        characterDetailDataSource = dataSource
-        allCharacters = listOfCharacters
-        super.init(withDetailDataSource: dataSource)
+        allCharacters = characters
+        super.init(withDetailDataSource: StarWarsCharacterViewData(withCharacter: characters.first!))
         addLengthUnitToggleNotificationObserver()
     }
     
@@ -34,29 +34,21 @@ class StarWarsCharacterViewController: StarWarsDetailViewController {
     override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
+        fetchHomeNameOfAllCharacters()
+    }
+    
+    
+    override func viewDidDisappear(_ animated: Bool) {
         
-        let characterHomeOpQueue: OperationQueue = OperationQueue.init()
-        
-        let homelessCharacters: [Character] = allCharacters.filter( { (person: Character) -> Bool in
-            return (person.home == nil)
-        })
-        
-        if homelessCharacters.isEmpty == false {
-            
-            let characterOps: [StarWarsFetchCharacterHomeOperation] = homelessCharacters.compactMap ( { StarWarsFetchCharacterHomeOperation(withPerson: $0, delegate: self) } )
-            
-            if characterOps.isEmpty == false {
-                
-                characterHomeOpQueue.addOperations(characterOps, waitUntilFinished: false)
-            }
-        }
+        super.viewDidDisappear(animated)
+        characterHomeOpQueue?.cancelAllOperations()
     }
     
     
     override func selectedPickerIndex(index: Int) {
         let selectedPerson: Character = allCharacters[index]
-        characterDetailDataSource = StarWarsCharacterViewData(withCharacter: selectedPerson)
-        detailDataSource = characterDetailDataSource
+        let newCharacterViewData: StarWarsCharacterViewData  = StarWarsCharacterViewData(withCharacter: selectedPerson)
+        detailTableView.updateDataSource(newCharacterViewData)
         super.selectedPickerIndex(index: index)
     }
     
@@ -92,6 +84,8 @@ class StarWarsCharacterViewController: StarWarsDetailViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+        characterHomeOpQueue?.cancelAllOperations()
+        characterHomeOpQueue = nil
     }
     
 }
@@ -109,7 +103,8 @@ extension StarWarsCharacterViewController {
     
     @objc func lengthUnitToggleTriggered(withNotification notification: Notification) {
         
-        characterDetailDataSource.toggleLengthUnit()
+        let viewData: StarWarsCharacterViewData? = detailTableView.tableViewDataSource.data as? StarWarsCharacterViewData
+        viewData?.toggleLengthUnit()
         reloadDetailTableView(atIndexPath: IndexPath(row: 2, section: 0))
     }
 }
@@ -118,14 +113,42 @@ extension StarWarsCharacterViewController {
 extension StarWarsCharacterViewController: FetchCharacterHomeOperationCompletionProtocol {
     
     
-    func homeFetchedForCharacter(withName name: String) {
+    func fetchHomeNameOfAllCharacters() {
         
-        let currentPersonName: String = characterDetailDataSource.starWarsCharacter.name
+        let homelessCharacters: [Character] = allCharacters.filter( { (person: Character) -> Bool in
+            return (person.home == nil)
+        })
         
-        if name == currentPersonName {
-            reloadDetailTableView(atIndexPath: IndexPath(row: 1, section: 0))
+        if homelessCharacters.isEmpty == false {
+            
+            let characterOps: [StarWarsFetchCharacterHomeOperation] = homelessCharacters.compactMap ( { StarWarsFetchCharacterHomeOperation(withPerson: $0, delegate: self) } )
+            
+            if characterOps.isEmpty == false {
+                
+                characterHomeOpQueue?.addOperations(characterOps, waitUntilFinished: false)
+            }
         }
     }
     
+    
+    
+    func homeFetchedForCharacter(withName name: String) {
+        
+        let currentPersonName: String? = (detailTableView.tableViewDataSource.data as? StarWarsCharacterViewData)?.starWarsCharacter.name
+        
+        if let currentPersonName = currentPersonName {
+            if name == currentPersonName {
+                reloadDetailTableView(atIndexPath: IndexPath(row: 1, section: 0))
+            }
+        }
+    }
+    
+}
+
+
+
+extension StarWarsCharacterViewController {
+    
+    //Fetch more characters. Update the next URL property in the base VC, add the newly got character objects into the allCharacters array, and then again call home character API in the background using operations.
     
 }

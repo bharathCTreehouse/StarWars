@@ -58,14 +58,7 @@ extension ViewController: UITableViewDelegate {
                 
                 if error == nil {
                     
-                    let characterViewModel: [StarWarsCharacterViewData] = people.compactMap( { (input: Character) -> StarWarsCharacterViewData in
-                        
-                        return StarWarsCharacterViewData(withCharacter: input)
-                        
-                    })
-                    
-                    let viewModel: StarWarsCharacterViewData = characterViewModel.first!
-                    let detailVC: StarWarsCharacterViewController = StarWarsCharacterViewController(withDetailDataSource: viewModel, listOfCharacters: people)
+                    let detailVC: StarWarsCharacterViewController = StarWarsCharacterViewController(withListOfCharacters: people)
                     self.navigationController?.pushViewController(detailVC, animated: true)
                     
                 }
@@ -93,22 +86,8 @@ extension ViewController: UITableViewDelegate {
                 
                 if error == nil {
                     
-                    let transporterViewModel: [StarWarsTransporterViewData] = movables.compactMap( { (input: Transporter) -> StarWarsTransporterViewData in
-                        
-                        return StarWarsTransporterViewData(withTransporter: input)
-                        
-                    })
-                    
-                    if transporterViewModel.isEmpty == false {
-                        
-                        let viewModel: StarWarsTransporterViewData = transporterViewModel.first!
-                        let detailVC: StarWarsTransporterViewController = StarWarsTransporterViewController(withDetailDataSource: viewModel, listOfTransporters: movables)
-                        self.navigationController?.pushViewController(detailVC, animated: true)
-                    }
-                    else {
-                        print("Error")
-                    }
-                    
+                    let detailVC: StarWarsTransporterViewController = StarWarsTransporterViewController(withListOfTransporters: movables)
+                    self.navigationController?.pushViewController(detailVC, animated: true)
                     
                 }
                 else {

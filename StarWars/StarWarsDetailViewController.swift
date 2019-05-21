@@ -18,16 +18,14 @@ class StarWarsDetailViewController: UIViewController, SelectionPickerViewProtoco
     
     
     
-    var detailDataSource: StarWarsDetailDataSource
-    private var detailTableView: StarWarsDetailTableView
+    private(set) var detailTableView: StarWarsDetailTableView
     lazy var pickerView: SelectionPickerView = {
         return SelectionPickerView(withList: [], delegate: self)
     }()
     
     
     init(withDetailDataSource dataSource: StarWarsDetailDataSource) {
-        detailDataSource = dataSource
-        detailTableView = StarWarsDetailTableView(withDetailData: detailDataSource)
+        detailTableView = StarWarsDetailTableView(withDetailData: dataSource)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -86,7 +84,6 @@ class StarWarsDetailViewController: UIViewController, SelectionPickerViewProtoco
     
     
     func selectedPickerIndex(index: Int) {
-        detailTableView.updateDataSource(detailDataSource)
         reloadDetailTableView()
     }
     
@@ -100,6 +97,11 @@ class StarWarsDetailViewController: UIViewController, SelectionPickerViewProtoco
     
     var facts: [[String : String]] {
         return []
+    }
+    
+    
+    deinit {
+        print("DEINIT!!!")
     }
 
 

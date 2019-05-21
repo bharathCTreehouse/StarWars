@@ -25,7 +25,7 @@ class StarWarsFetchCharacterHomeOperation: StarWarsFetchOperation {
         super.init(withUrl: person.homeURL)
     }
     
-
+    
     override func main() {
         
         super.main()
@@ -35,6 +35,10 @@ class StarWarsFetchCharacterHomeOperation: StarWarsFetchOperation {
             DispatchQueue.main.async  {
                 
                 unowned let weakSelf = self
+                
+                if self.isCancelled == true {
+                    return
+                }
                 
                 do {
                     let jsonDictionary: [String: Any]? = try JSONSerialization.jsonObject(with: weakSelf.jsonData!, options: .allowFragments) as? [String: Any]
@@ -48,7 +52,6 @@ class StarWarsFetchCharacterHomeOperation: StarWarsFetchOperation {
                     return
                 }
             }
-            
             
         }
         

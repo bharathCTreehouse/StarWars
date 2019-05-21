@@ -12,15 +12,13 @@ import UIKit
 
 class StarWarsTransporterViewController: StarWarsDetailViewController {
     
-    var transporterDetailDataSource: StarWarsTransporterViewData
     var allTransporters: [Transporter]
     
    
-    init(withDetailDataSource dataSource: StarWarsTransporterViewData, listOfTransporters: [Transporter]) {
+    init(withListOfTransporters transporters: [Transporter]) {
         
-        transporterDetailDataSource = dataSource
-        allTransporters = listOfTransporters
-        super.init(withDetailDataSource: dataSource)
+        allTransporters = transporters
+        super.init(withDetailDataSource: StarWarsTransporterViewData(withTransporter: transporters.first!))
         addLengthUnitToggleNotificationObserver()
         addCostUnitToggleNotificationObserver()
     }
@@ -33,8 +31,8 @@ class StarWarsTransporterViewController: StarWarsDetailViewController {
     
     override func selectedPickerIndex(index: Int) {
         let selectedTransporter: Transporter = allTransporters[index]
-        transporterDetailDataSource = StarWarsTransporterViewData(withTransporter: selectedTransporter)
-        detailDataSource = transporterDetailDataSource
+        let newTransporterViewData: StarWarsTransporterViewData  = StarWarsTransporterViewData(withTransporter: selectedTransporter)
+        detailTableView.updateDataSource(newTransporterViewData)
         super.selectedPickerIndex(index: index)
     }
     
@@ -86,7 +84,8 @@ extension StarWarsTransporterViewController {
     
     @objc func lengthUnitToggleTriggered(withNotification notification: Notification) {
         
-        transporterDetailDataSource.toggleLengthUnit()
+        let viewData: StarWarsTransporterViewData? = detailTableView.tableViewDataSource.data as? StarWarsTransporterViewData
+        viewData?.toggleLengthUnit()
         reloadDetailTableView(atIndexPath: IndexPath(row: 2, section: 0))
 
     }

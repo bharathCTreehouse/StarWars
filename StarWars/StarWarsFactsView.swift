@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol StarWarsFactsViewDataSource {
+protocol StarWarsFactsViewDataSource: class {
     var facts: [ [String: String] ] { get }
 }
 
@@ -22,7 +22,7 @@ class StarWarsFactsView: UIView {
     @IBOutlet weak var secondValueLabel: UILabel!
     
     private weak var factsView: UIView? = nil
-    var factsDataSource: StarWarsFactsViewDataSource
+    weak var factsDataSource: StarWarsFactsViewDataSource? = nil
     
     
     init(withDataSource dataSource: StarWarsFactsViewDataSource) {
@@ -59,11 +59,11 @@ class StarWarsFactsView: UIView {
     
     func reloadView() {
         
-        let firstMappingPair: [String: String] = factsDataSource.facts.first!
+        let firstMappingPair: [String: String] = factsDataSource!.facts.first!
         firstAttributeLabel.text = firstMappingPair.keys.first!
         firstValueLabel.text = firstMappingPair.values.first!
         
-        let secondMappingPair: [String: String] = factsDataSource.facts.last!
+        let secondMappingPair: [String: String] = factsDataSource!.facts.last!
         secondAttributeLabel.text = secondMappingPair.keys.first!
         secondValueLabel.text = secondMappingPair.values.first!
         
@@ -78,6 +78,7 @@ class StarWarsFactsView: UIView {
         secondAttributeLabel = nil
         secondValueLabel = nil
         factsView = nil
+        factsDataSource = nil
     }
 
     
