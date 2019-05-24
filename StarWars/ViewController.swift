@@ -54,11 +54,11 @@ extension ViewController: UITableViewDelegate {
             let characterEndpoint: StarWars = StarWars.character(.all)
             let characterReq: URLRequest? = characterEndpoint.urlRequest
             
-            apiClient.fetchAllCharacters(forRequest: characterReq!, withCompletionHandler: { (people: [Character], error: StarWarsError?) -> Void in
+            apiClient.fetchAllCharacters(forRequest: characterReq!, withCompletionHandler: { (people: [Character], nextUrlString: String?, error: StarWarsError?) -> Void in
                 
                 if error == nil {
                     
-                    let detailVC: StarWarsCharacterViewController = StarWarsCharacterViewController(withListOfCharacters: people)
+                    let detailVC: StarWarsCharacterViewController = StarWarsCharacterViewController(withListOfCharacters: people, nextSetUrlString: nextUrlString)
                     self.navigationController?.pushViewController(detailVC, animated: true)
                     
                 }
@@ -82,11 +82,11 @@ extension ViewController: UITableViewDelegate {
             }
             
             
-            apiClient.fetchAllTransporters(forRequest: transportRequest, withCompletionHandler: { (movables: [Transporter], error: StarWarsError?) -> Void in
+            apiClient.fetchAllTransporters(forRequest: transportRequest, withCompletionHandler: { (movables: [Transporter], nextUrlString: String?, error: StarWarsError?) -> Void in
                 
                 if error == nil {
                     
-                    let detailVC: StarWarsTransporterViewController = StarWarsTransporterViewController(withListOfTransporters: movables)
+                    let detailVC: StarWarsTransporterViewController = StarWarsTransporterViewController(withListOfTransporters: movables, nextSetUrlString: nextUrlString)
                     self.navigationController?.pushViewController(detailVC, animated: true)
                     
                 }

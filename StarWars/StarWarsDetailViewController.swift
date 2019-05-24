@@ -17,20 +17,34 @@ protocol AttributeNameProtocol {
 class StarWarsDetailViewController: UIViewController, SelectionPickerViewProtocol, AttributeNameProtocol, StarWarsFactsViewDataSource {
     
     
+    private(set) var detailTableView: StarWarsDetailTableView!
     
-    private(set) var detailTableView: StarWarsDetailTableView
     lazy var pickerView: SelectionPickerView = {
-        return SelectionPickerView(withList: [], delegate: self)
+        
+        let activityViewData: StarWarsActivityIndicatorData = StarWarsActivityIndicatorData(withButtonAttrs: [.title("Show more"), .titleColor(UIColor(red: 123.0/155.0, green: 208.0/155.0, blue: 254.0/155.0, alpha: 1.0)), .titleFont(UIFont.boldSystemFont(ofSize: 19.0))], activityIndicatorAttr: .style(.white), color: UIColor.black)
+        
+        
+        return SelectionPickerView(withList: [], delegate: self, additionalViewDataSource: activityViewData, additionalViewDelegate: self)
+    }()
+    
+    var nextSetUrlString: String? = nil
+    
+    lazy var factsView: StarWarsFactsView = {
+        return StarWarsFactsView(withDataSource: self)
     }()
     
     
-    init(withDetailDataSource dataSource: StarWarsDetailDataSource) {
-        detailTableView = StarWarsDetailTableView(withDetailData: dataSource)
+    
+    init(withDetailDataSource dataSource: StarWarsDetailDataSource, nextSetUrlString urlString: String? ) {
+        
+        nextSetUrlString = urlString
         super.init(nibName: nil, bundle: nil)
+        detailTableView = StarWarsDetailTableView(withDetailData: dataSource)
     }
     
+    
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     
@@ -38,7 +52,6 @@ class StarWarsDetailViewController: UIViewController, SelectionPickerViewProtoco
         
         self.view = UIView()
         
-        let factsView: StarWarsFactsView = StarWarsFactsView(withDataSource: self)
         view.addSubview(factsView)
         factsView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         factsView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
@@ -57,9 +70,8 @@ class StarWarsDetailViewController: UIViewController, SelectionPickerViewProtoco
         detailTableView.bottomAnchor.constraint(equalTo: pickerView.topAnchor).isActive = true
         
         detailTableView.backgroundColor = UIColor.init(red: 26.0/155.0, green: 32.0/155.0, blue: 36.0/155.0, alpha: 1.0)
-        
-        
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,12 +112,30 @@ class StarWarsDetailViewController: UIViewController, SelectionPickerViewProtoco
     }
     
     
+
     deinit {
-        print("DEINIT!!!")
+        nextSetUrlString = nil
     }
+}
 
 
+
+extension StarWarsDetailViewController: SelectionPickerAdditionalViewProtocol {
     
+    
+    func additionalViewTapped() {
+        loadMoreContent()
+    }
+    
+    
+    @objc func loadMoreContent() {
+        
+        if nextSetUrlString == nil {
+            //Show alert and return
+            return
+        }
+        
+    }
 }
 
 

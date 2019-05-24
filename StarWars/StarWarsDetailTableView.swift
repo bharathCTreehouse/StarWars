@@ -15,9 +15,11 @@ class StarWarsDetailTableView: UITableView {
     
     var tableViewDataSource: StarWarsDetailTableViewDataSource
     
+    
     required init(withDetailData data: StarWarsDetailDataSource) {
         
         tableViewDataSource = StarWarsDetailTableViewDataSource(withDetailDataSource: data)
+        
         super.init(frame: .zero, style: .plain)
         
         translatesAutoresizingMaskIntoConstraints = false
@@ -26,12 +28,10 @@ class StarWarsDetailTableView: UITableView {
         self.register(StarWarsCostUnitToggleTableViewCell.classForCoder(), forCellReuseIdentifier: "costToggleCell")
         
         dataSource = tableViewDataSource
-        estimatedRowHeight = 90
+        
+        estimatedRowHeight = 90.0
         rowHeight = UITableView.automaticDimension
-        
         self.tableFooterView = UIView(frame: .zero)
-        
-        delegate = self
     }
     
     
@@ -43,23 +43,8 @@ class StarWarsDetailTableView: UITableView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }
 
 
 
-extension StarWarsDetailTableView: UITableViewDelegate {
-    
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        
-        let view: UIView = UIView()
-        view.backgroundColor = UIColor.blue
-        return view
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        
-        return 60.0
-    }
-
-}

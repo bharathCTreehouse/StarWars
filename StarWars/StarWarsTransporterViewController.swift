@@ -15,17 +15,18 @@ class StarWarsTransporterViewController: StarWarsDetailViewController {
     var allTransporters: [Transporter]
     
    
-    init(withListOfTransporters transporters: [Transporter]) {
+    init(withListOfTransporters transporters: [Transporter], nextSetUrlString urlString: String? = nil) {
         
         allTransporters = transporters
-        super.init(withDetailDataSource: StarWarsTransporterViewData(withTransporter: transporters.first!))
+        super.init(withDetailDataSource: StarWarsTransporterViewData(withTransporter: transporters.first!), nextSetUrlString: urlString)
         addLengthUnitToggleNotificationObserver()
         addCostUnitToggleNotificationObserver()
     }
     
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        allTransporters = []
+        super.init(coder: aDecoder)
     }
     
     
@@ -108,5 +109,51 @@ extension StarWarsTransporterViewController {
 
     }
     
+}
+
+
+
+
+extension StarWarsTransporterViewController {
+    
+    
+    override func loadMoreContent() {
+        
+        super.loadMoreContent()
+        
+        if let nextUrlString = nextSetUrlString,  let url = URL(string: nextUrlString) {
+            
+            pickerView.toggleAdditionalViewToInProgressState(true)
+            
+            let apiClient: StarWarsAPIClient = StarWarsAPIClient()
+            let urlReq: URLRequest = URLRequest(url: url)
+            
+            apiClient.fetchAllTransporters(forRequest: urlReq, withCompletionHandler:  { [unowned self] (movables: [Transporter], nextUrlStr: String?, error: StarWarsError?) -> Void in
+                
+                self.pickerView.toggleAdditionalViewToInProgressState(false)
+                
+                self.nextSetUrlString = nextUrlStr
+                
+                if error == nil {
+                    
+                    if movables.isEmpty == false {
+                        
+                        self.allTransporters.append(contentsOf: movables)
+                        self.pickerView.updateTitleList(withList: self.allNames)
+                        
+                        //Recalculate facts and update
+                        self.factsView.update(withFactsDataSource: self)
+                        
+                    }
+                }
+                else {
+                    //Show alert.
+                }
+                
+            })
+        }
+        
+        
+    }
 }
 

@@ -12,19 +12,19 @@ import UIKit
 
 class StarWarsCharacterViewController: StarWarsDetailViewController {
     
-    let allCharacters: [Character]
+    var allCharacters: [Character]
     var characterHomeOpQueue: OperationQueue? = OperationQueue.init()
 
     
     
-    init(withListOfCharacters characters: [Character]) {
+    init(withListOfCharacters characters: [Character], nextSetUrlString urlString: String? = nil) {
         
         allCharacters = characters
-        super.init(withDetailDataSource: StarWarsCharacterViewData(withCharacter: characters.first!))
+        super.init(withDetailDataSource: StarWarsCharacterViewData(withCharacter: characters.first!), nextSetUrlString: urlString)
         addLengthUnitToggleNotificationObserver()
     }
     
-    
+   
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -150,5 +150,45 @@ extension StarWarsCharacterViewController: FetchCharacterHomeOperationCompletion
 extension StarWarsCharacterViewController {
     
     //Fetch more characters. Update the next URL property in the base VC, add the newly got character objects into the allCharacters array, and then again call home character API in the background using operations.
+    
+    override func loadMoreContent() {
+        
+        super.loadMoreContent()
+        
+        if let nextUrlString = nextSetUrlString,  let url = URL(string: nextUrlString) {
+            
+            pickerView.toggleAdditionalViewToInProgressState(true)
+            
+            let apiClient: StarWarsAPIClient = StarWarsAPIClient()
+            let urlReq: URLRequest = URLRequest(url: url)
+            
+            apiClient.fetchAllCharacters(forRequest: urlReq, withCompletionHandler:  { [unowned self] (people: [Character], nextUrlStr: String?, error: StarWarsError?) -> Void in
+                
+                self.pickerView.toggleAdditionalViewToInProgressState(false)
+
+                self.nextSetUrlString = nextUrlStr
+                
+                if error == nil {
+                    
+                    if people.isEmpty == false {
+                        
+                        self.allCharacters.append(contentsOf: people)
+                        self.pickerView.updateTitleList(withList: self.allNames)
+                        self.fetchHomeNameOfAllCharacters()
+                        
+                        //Recalculate facts and update
+                        self.factsView.update(withFactsDataSource: self)
+                        
+                    }
+                }
+                else {
+                    //Show alert.
+                }
+                
+            })
+        }
+
+        
+    }
     
 }

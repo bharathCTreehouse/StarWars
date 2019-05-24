@@ -14,6 +14,10 @@ protocol SelectionPickerViewProtocol: class {
     func selectedPickerIndex(index: Int)
 }
 
+protocol SelectionPickerAdditionalViewProtocol: class {
+    func additionalViewTapped()
+}
+
 
 class SelectionPickerView: UIView {
     
@@ -21,14 +25,21 @@ class SelectionPickerView: UIView {
     private(set) var titles: [String]
     weak var delegate: SelectionPickerViewProtocol? = nil
     
+    weak var additionalViewDataSource: StarWarsActivityViewDataSource? = nil
+    weak var additionalViewDelegate: SelectionPickerAdditionalViewProtocol? = nil
+    var activityView: StarWarsActivityIndicatorView? = nil
+
     
-    init(withList list: [String], delegate: SelectionPickerViewProtocol) {
+    
+    init(withList list: [String], delegate: SelectionPickerViewProtocol?, additionalViewDataSource: StarWarsActivityViewDataSource?, additionalViewDelegate: SelectionPickerAdditionalViewProtocol?) {
         
         titles = list
         self.delegate = delegate
+        self.additionalViewDataSource = additionalViewDataSource
+        self.additionalViewDelegate = additionalViewDelegate
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
-        setupPickerView()
+        setupSubviews()
     }
     
     
@@ -37,13 +48,32 @@ class SelectionPickerView: UIView {
     }
     
     
-    func setupPickerView() {
+    func setupSubviews() {
         
         picketView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(picketView)
+        
+        if let additionalViewDataSource = additionalViewDataSource {
+            
+            activityView = StarWarsActivityIndicatorView (withDataSource: additionalViewDataSource, buttonActionHandler: { [unowned self] () -> Void in
+                
+                self.additionalViewDelegate?.additionalViewTapped()
+            })
+            
+            addSubview(activityView!)
+            activityView!.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+            activityView!.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+            activityView!.topAnchor.constraint(equalTo: topAnchor).isActive = true
+            
+            picketView.topAnchor.constraint(equalTo: activityView!.bottomAnchor).isActive = true
+            
+        }
+        else {
+            picketView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        }
+        
         picketView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         picketView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        picketView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         picketView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
         picketView.delegate = self
@@ -57,6 +87,18 @@ class SelectionPickerView: UIView {
     func updateTitleList(withList list: [String]) {
         titles = list
         picketView.reloadAllComponents()
+    }
+    
+    
+    func toggleAdditionalViewToInProgressState(_ inProgress: Bool) {
+        self.activityView?.animateActivityIndicator(inProgress)
+    }
+    
+    
+    deinit {
+        additionalViewDataSource = nil
+        delegate = nil
+        additionalViewDelegate = nil
     }
 }
 

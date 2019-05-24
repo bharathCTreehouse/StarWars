@@ -71,6 +71,13 @@ class StarWarsFactsView: UIView {
     
     
     
+    func update(withFactsDataSource dataSource: StarWarsFactsViewDataSource) {
+        factsDataSource = dataSource
+        reloadView()
+    }
+    
+    
+    
     
     deinit {
         firstAttributeLabel = nil

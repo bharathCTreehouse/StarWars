@@ -19,7 +19,7 @@ enum StarWarsError: Error {
 
 class StarWarsAPIClient {
     
-    func fetchAllCharacters(forRequest request: URLRequest, withCompletionHandler handler: @escaping  (([Character], StarWarsError?) -> Void)) {
+    func fetchAllCharacters(forRequest request: URLRequest, withCompletionHandler handler: @escaping  (([Character], String?, StarWarsError?) -> Void)) {
         
         let session: URLSession = URLSession(configuration: .default)
         
@@ -29,7 +29,7 @@ class StarWarsAPIClient {
             DispatchQueue.main.async {
                 
                 if error != nil {
-                    handler([], error as? StarWarsError)
+                    handler([],nil, error as? StarWarsError)
                     return
                 }
                 
@@ -46,25 +46,25 @@ class StarWarsAPIClient {
                             
                             do {
                                 let fetchResult: StarWarsPeopleFetchResult = try  jsonDecoder.decode(StarWarsPeopleFetchResult.self, from: json)
-                                handler(fetchResult.people, nil)
+                                handler(fetchResult.people,fetchResult.next, nil)
                             }
                             catch let error {
-                                handler([], .jsonParsingFailure(message: error.localizedDescription))
+                                handler([],nil, .jsonParsingFailure(message: error.localizedDescription))
                             }
                             
                         }
                         else {
-                            handler([], .invalidData)
+                            handler([],nil, .invalidData)
                         }
                         
                     }
                     else {
-                        handler([], .failedResponse)
+                        handler([],nil, .failedResponse)
                     }
                     
                 }
                 else {
-                    handler([], .invalidResponse)
+                    handler([],nil, .invalidResponse)
                 }
                 
                 
@@ -76,7 +76,7 @@ class StarWarsAPIClient {
     }
     
     
-    func fetchAllTransporters(forRequest request: URLRequest, withCompletionHandler handler: @escaping (([Transporter], StarWarsError?) -> Void)) {
+    func fetchAllTransporters(forRequest request: URLRequest, withCompletionHandler handler: @escaping (([Transporter], String?, StarWarsError?) -> Void)) {
         
         
         let session: URLSession = URLSession(configuration: .default)
@@ -87,7 +87,7 @@ class StarWarsAPIClient {
             DispatchQueue.main.async {
                 
                 if error != nil {
-                    handler([], error as? StarWarsError)
+                    handler([],nil, error as? StarWarsError)
                     return
                 }
                 
@@ -104,25 +104,25 @@ class StarWarsAPIClient {
                             
                             do {
                                 let fetchResult: StarWarsMovableFetchResult = try  jsonDecoder.decode(StarWarsMovableFetchResult.self, from: json)
-                                handler(fetchResult.movables, nil)
+                                handler(fetchResult.movables, fetchResult.next, nil)
                             }
                             catch let error {
-                                handler([], .jsonParsingFailure(message: error.localizedDescription))
+                                handler([], nil, .jsonParsingFailure(message: error.localizedDescription))
                             }
                             
                         }
                         else {
-                            handler([], .invalidData)
+                            handler([],nil, .invalidData)
                         }
                         
                     }
                     else {
-                        handler([], .failedResponse)
+                        handler([],nil, .failedResponse)
                     }
                     
                 }
                 else {
-                    handler([], .invalidResponse)
+                    handler([], nil, .invalidResponse)
                 }
                 
                 

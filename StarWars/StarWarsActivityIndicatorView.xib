@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StarWarsActivityIndicatorView" customModule="StarWars" customModuleProvider="target">
+            <connections>
+                <outlet property="activityIndicatorView" destination="5V3-iT-Eyq" id="CBD-gf-3SB"/>
+                <outlet property="button" destination="uNJ-1k-usN" id="aka-wL-9vw"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNJ-1k-usN">
+                    <rect key="frame" x="16" y="56" width="342" height="794"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="buttonTapped:" destination="-1" eventType="touchUpInside" id="VMd-Rt-RSr"/>
+                    </connections>
+                </button>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="5V3-iT-Eyq">
+                    <rect key="frame" x="378" y="56" width="20" height="794"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="5V3-iT-Eyq" firstAttribute="leading" secondItem="uNJ-1k-usN" secondAttribute="trailing" constant="20" id="FOc-qg-tsw"/>
+                <constraint firstItem="uNJ-1k-usN" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12" id="H8r-vT-oLe"/>
+                <constraint firstItem="5V3-iT-Eyq" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12" id="ToN-zn-lMF"/>
+                <constraint firstItem="uNJ-1k-usN" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="VOP-4d-33l"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="uNJ-1k-usN" secondAttribute="bottom" constant="12" id="VcW-LV-g6I"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="5V3-iT-Eyq" secondAttribute="trailing" constant="16" id="ZYH-ds-Lya"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="5V3-iT-Eyq" secondAttribute="bottom" constant="12" id="ylm-dg-CGO"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+</document>
