@@ -25,7 +25,7 @@ class StarWarsFactsView: UIView {
     weak var factsDataSource: StarWarsFactsViewDataSource? = nil
     
     
-    init(withDataSource dataSource: StarWarsFactsViewDataSource) {
+    init(withDataSource dataSource: StarWarsFactsViewDataSource?) {
         
         factsDataSource = dataSource
         super.init(frame: .zero)
@@ -40,7 +40,7 @@ class StarWarsFactsView: UIView {
     
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     
@@ -59,13 +59,16 @@ class StarWarsFactsView: UIView {
     
     func reloadView() {
         
-        let firstMappingPair: [String: String] = factsDataSource!.facts.first!
-        firstAttributeLabel.text = firstMappingPair.keys.first!
-        firstValueLabel.text = firstMappingPair.values.first!
-        
-        let secondMappingPair: [String: String] = factsDataSource!.facts.last!
-        secondAttributeLabel.text = secondMappingPair.keys.first!
-        secondValueLabel.text = secondMappingPair.values.first!
+        if let factsDataSource = factsDataSource {
+            
+            let firstMappingPair: [String: String] = factsDataSource.facts.first!
+            firstAttributeLabel.text = firstMappingPair.keys.first!
+            firstValueLabel.text = firstMappingPair.values.first!
+            
+            let secondMappingPair: [String: String] = factsDataSource.facts.last!
+            secondAttributeLabel.text = secondMappingPair.keys.first!
+            secondValueLabel.text = secondMappingPair.values.first!
+        }
         
     }
     

@@ -16,7 +16,6 @@ class StarWarsCharacterViewController: StarWarsDetailViewController {
     var characterHomeOpQueue: OperationQueue? = OperationQueue.init()
 
     
-    
     init(withListOfCharacters characters: [Character], nextSetUrlString urlString: String? = nil) {
         
         allCharacters = characters
@@ -29,6 +28,13 @@ class StarWarsCharacterViewController: StarWarsDetailViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        factsView.update(withFactsDataSource: StarWarsFactsData(withSizeList: allCharacters))
+        setupNavigationBarButtonItem()
+    }
     
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,23 +69,32 @@ class StarWarsCharacterViewController: StarWarsDetailViewController {
     }
     
     
-    override var facts: [[String : String]] {
+    
+    func setupNavigationBarButtonItem() {
         
-        let heights: [Double] = allCharacters.compactMap { return Double($0.height)}
-        let lowestHeight: Double? = heights.min()
-        let highestHeight: Double? = heights.max()
+        let infoButton: UIButton = UIButton(type: .infoDark)
+        infoButton.addTarget(self, action: #selector(infoButtonTapped(_:)), for: .touchUpInside)
         
-        if let lowestHeight = lowestHeight, let highestHeight = highestHeight {
+        let barbuttonItem: UIBarButtonItem = UIBarButtonItem(customView: infoButton)
+        self.navigationItem.rightBarButtonItem = barbuttonItem
+        
+    }
+    
+    
+    @objc func infoButtonTapped(_ sender: UIButton) {
+        
+        
+        let selectedPerson: Character? =  (detailTableView.tableViewDataSource.data as? StarWarsCharacterViewData)?.starWarsCharacter
+        
+        if let selectedPerson = selectedPerson {
             
-            let lowestHtName: String = self.allCharacters[heights.firstIndex(of: lowestHeight)!].name
-            let highestHtName: String = self.allCharacters[heights.firstIndex(of: highestHeight)!].name
-            return [["Smallest": lowestHtName], ["Largest": highestHtName]]
-        }
-        else {
-            return super.facts
+            let trimmedTransporterVC: StarWarsTrimmedDataViewController = StarWarsTrimmedDataViewController(withPerson: selectedPerson)
+            
+            let navController: UINavigationController = UINavigationController(rootViewController: trimmedTransporterVC)
+            self.present(navController, animated: true, completion: nil)
+
         }
     }
-
     
     
     deinit {
@@ -177,7 +192,7 @@ extension StarWarsCharacterViewController {
                         self.fetchHomeNameOfAllCharacters()
                         
                         //Recalculate facts and update
-                        self.factsView.update(withFactsDataSource: self)
+                        self.factsView.update(withFactsDataSource: StarWarsFactsData(withSizeList: self.allCharacters))
                         
                     }
                 }

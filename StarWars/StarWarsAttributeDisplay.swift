@@ -10,6 +10,7 @@ import Foundation
 
 enum StarWarsAttributeDisplay: String {
     
+    case name = "Name"
     case born = "Born"
     case home = "Home"
     case eyes = "Eyes"

@@ -14,7 +14,7 @@ protocol AttributeNameProtocol {
 }
 
 
-class StarWarsDetailViewController: UIViewController, SelectionPickerViewProtocol, AttributeNameProtocol, StarWarsFactsViewDataSource {
+class StarWarsDetailViewController: UIViewController, SelectionPickerViewProtocol, AttributeNameProtocol {
     
     
     private(set) var detailTableView: StarWarsDetailTableView!
@@ -30,7 +30,7 @@ class StarWarsDetailViewController: UIViewController, SelectionPickerViewProtoco
     var nextSetUrlString: String? = nil
     
     lazy var factsView: StarWarsFactsView = {
-        return StarWarsFactsView(withDataSource: self)
+        return StarWarsFactsView(withDataSource: nil)
     }()
     
     
@@ -70,6 +70,7 @@ class StarWarsDetailViewController: UIViewController, SelectionPickerViewProtoco
         detailTableView.bottomAnchor.constraint(equalTo: pickerView.topAnchor).isActive = true
         
         detailTableView.backgroundColor = UIColor.init(red: 26.0/155.0, green: 32.0/155.0, blue: 36.0/155.0, alpha: 1.0)
+        
     }
     
     
@@ -106,13 +107,6 @@ class StarWarsDetailViewController: UIViewController, SelectionPickerViewProtoco
     }
     
     
-    
-    var facts: [[String : String]] {
-        return []
-    }
-    
-    
-
     deinit {
         nextSetUrlString = nil
     }

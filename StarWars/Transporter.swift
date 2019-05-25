@@ -18,3 +18,15 @@ struct Transporter: Decodable {
     let model: String
     let crew: String
 }
+
+
+extension Transporter: StarWarsSizeAndNameIdentifiable {
+    
+    var sizeOfComponent: Double {
+        return Double(length) ?? 0.0
+    }
+    
+    var nameOfComponent: String {
+        return name
+    }
+}

@@ -29,6 +29,12 @@ class StarWarsTransporterViewController: StarWarsDetailViewController {
         super.init(coder: aDecoder)
     }
     
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        factsView.update(withFactsDataSource: StarWarsFactsData(withSizeList: allTransporters))
+    }
+    
     
     override func selectedPickerIndex(index: Int) {
         let selectedTransporter: Transporter = allTransporters[index]
@@ -45,26 +51,6 @@ class StarWarsTransporterViewController: StarWarsDetailViewController {
         })
         return names
     }
-    
-    
-    override var facts: [[String : String]] {
-        
-        let heights: [Double] = allTransporters.compactMap { return Double($0.length)}
-        let lowestHeight: Double? = heights.min()
-        let highestHeight: Double? = heights.max()
-        
-        if let lowestHeight = lowestHeight, let highestHeight = highestHeight {
-            
-            let lowestHtName: String = self.allTransporters[heights.firstIndex(of: lowestHeight)!].name
-            let highestHtName: String = self.allTransporters[heights.firstIndex(of: highestHeight)!].name
-            return [["Smallest": lowestHtName], ["Largest": highestHtName]]
-        }
-        else {
-            return super.facts
-        }
-    }
-
-    
     
     
     deinit {
@@ -142,7 +128,8 @@ extension StarWarsTransporterViewController {
                         self.pickerView.updateTitleList(withList: self.allNames)
                         
                         //Recalculate facts and update
-                        self.factsView.update(withFactsDataSource: self)
+                        self.factsView.update(withFactsDataSource: StarWarsFactsData(withSizeList: self.allTransporters))
+
                         
                     }
                 }
