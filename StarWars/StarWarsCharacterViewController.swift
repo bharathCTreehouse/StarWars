@@ -88,7 +88,7 @@ class StarWarsCharacterViewController: StarWarsDetailViewController {
         
         if let selectedPerson = selectedPerson {
             
-            let trimmedTransporterVC: StarWarsTrimmedDataViewController = StarWarsTrimmedDataViewController(withPerson: selectedPerson)
+            let trimmedTransporterVC: StarWarsCharacterTransporterViewController = StarWarsCharacterTransporterViewController(withPerson: selectedPerson)
             
             let navController: UINavigationController = UINavigationController(rootViewController: trimmedTransporterVC)
             self.present(navController, animated: true, completion: nil)

@@ -1,5 +1,5 @@
 //
-//  StarWarsTrimmedDataViewController.swift
+//  StarWarsCharacterTransporterViewController.swift
 //  StarWars
 //
 //  Created by Bharath on 25/05/19.
@@ -11,9 +11,9 @@ import UIKit
 
 
 
-class StarWarsTrimmedDataViewController: UIViewController {
+class StarWarsCharacterTransporterViewController: UIViewController {
     
-    let trimmedTableView: StarWarsTrimmedDataDisplayTableView = StarWarsTrimmedDataDisplayTableView(withTrimmedVehicleDataSource: [], trimmedstarshipDataSource: [])
+    let trimmedTableView: StarWarsCharacterTransporterTableView = StarWarsCharacterTransporterTableView(withTrimmedVehicleDataSource: [], trimmedstarshipDataSource: [])
     
     let person: Character
     let characterTransporterOperationQueue: OperationQueue = OperationQueue.init()
@@ -51,7 +51,6 @@ class StarWarsTrimmedDataViewController: UIViewController {
         
         fetchVehiclesOfSelectedCharacter()
         fetchStarshipsOfSelectedCharacter()
-        
         setupNavigationItem()
     }
     
@@ -74,7 +73,7 @@ class StarWarsTrimmedDataViewController: UIViewController {
 
 
 
-extension StarWarsTrimmedDataViewController {
+extension StarWarsCharacterTransporterViewController {
     
     func fetchVehiclesOfSelectedCharacter() {
         
@@ -130,7 +129,7 @@ extension StarWarsTrimmedDataViewController {
 
 
 
-extension StarWarsTrimmedDataViewController: StarWarsFetchCharacterTransporterCompletionProtocol {
+extension StarWarsCharacterTransporterViewController: StarWarsFetchCharacterTransporterCompletionProtocol {
     
     
     func transporterFetched(_ transporter: Transporter, ofType type: TransporterType) {

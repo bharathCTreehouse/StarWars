@@ -11,7 +11,7 @@ import UIKit
 
 
 
-class StarWarsTrimmedDataDisplayTableView: UITableView {
+class StarWarsCharacterTransporterTableView: UITableView {
     
     var trimmedVehicleDataSource: [StarWarsDetailDataSource] = []
     var trimmedStarshipDataSource: [StarWarsDetailDataSource] = []
@@ -57,7 +57,7 @@ class StarWarsTrimmedDataDisplayTableView: UITableView {
 
 
 
-extension StarWarsTrimmedDataDisplayTableView: UITableViewDataSource {
+extension StarWarsCharacterTransporterTableView: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -136,7 +136,7 @@ extension StarWarsTrimmedDataDisplayTableView: UITableViewDataSource {
 
 
 
-extension StarWarsTrimmedDataDisplayTableView: UITableViewDelegate {
+extension StarWarsCharacterTransporterTableView: UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
