@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNJ-1k-usN">
-                    <rect key="frame" x="16" y="56" width="342" height="794"/>
+                    <rect key="frame" x="16" y="52" width="342" height="802"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="Button"/>
                     <connections>
@@ -30,18 +30,18 @@
                     </connections>
                 </button>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="5V3-iT-Eyq">
-                    <rect key="frame" x="378" y="56" width="20" height="794"/>
+                    <rect key="frame" x="378" y="52" width="20" height="802"/>
                 </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="5V3-iT-Eyq" firstAttribute="leading" secondItem="uNJ-1k-usN" secondAttribute="trailing" constant="20" id="FOc-qg-tsw"/>
-                <constraint firstItem="uNJ-1k-usN" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12" id="H8r-vT-oLe"/>
-                <constraint firstItem="5V3-iT-Eyq" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12" id="ToN-zn-lMF"/>
+                <constraint firstItem="uNJ-1k-usN" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="H8r-vT-oLe"/>
+                <constraint firstItem="5V3-iT-Eyq" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="ToN-zn-lMF"/>
                 <constraint firstItem="uNJ-1k-usN" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="VOP-4d-33l"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="uNJ-1k-usN" secondAttribute="bottom" constant="12" id="VcW-LV-g6I"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="uNJ-1k-usN" secondAttribute="bottom" constant="8" id="VcW-LV-g6I"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="5V3-iT-Eyq" secondAttribute="trailing" constant="16" id="ZYH-ds-Lya"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="5V3-iT-Eyq" secondAttribute="bottom" constant="12" id="ylm-dg-CGO"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="5V3-iT-Eyq" secondAttribute="bottom" constant="8" id="ylm-dg-CGO"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>

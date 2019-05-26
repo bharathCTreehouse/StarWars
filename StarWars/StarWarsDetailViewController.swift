@@ -33,6 +33,8 @@ class StarWarsDetailViewController: UIViewController, SelectionPickerViewProtoco
         return StarWarsFactsView(withDataSource: nil)
     }()
     
+    var tableViewBottomConst: NSLayoutConstraint? = nil
+    
     
     
     init(withDetailDataSource dataSource: StarWarsDetailDataSource, nextSetUrlString urlString: String? ) {
@@ -67,15 +69,12 @@ class StarWarsDetailViewController: UIViewController, SelectionPickerViewProtoco
         detailTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         detailTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         detailTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        detailTableView.bottomAnchor.constraint(equalTo: pickerView.topAnchor).isActive = true
+        tableViewBottomConst = detailTableView.bottomAnchor.constraint(equalTo: pickerView.topAnchor)
+        tableViewBottomConst!.isActive = true
         
+       
         detailTableView.backgroundColor = UIColor.init(red: 26.0/155.0, green: 32.0/155.0, blue: 36.0/155.0, alpha: 1.0)
         
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
     
     
@@ -109,6 +108,7 @@ class StarWarsDetailViewController: UIViewController, SelectionPickerViewProtoco
     
     deinit {
         nextSetUrlString = nil
+        tableViewBottomConst = nil
     }
 }
 
@@ -130,6 +130,35 @@ extension StarWarsDetailViewController: SelectionPickerAdditionalViewProtocol {
         }
         
     }
+}
+
+
+
+extension StarWarsDetailViewController {
+    
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        self.tableViewBottomConst!.isActive = false
+        
+        if UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight {
+            
+            self.pickerView.isHidden = true
+            
+            self.tableViewBottomConst = detailTableView.bottomAnchor.constraint(equalTo: factsView.topAnchor)
+        }
+        else {
+            self.pickerView.isHidden = false
+            
+            self.tableViewBottomConst = detailTableView.bottomAnchor.constraint(equalTo: pickerView.topAnchor)
+        }
+        
+        self.tableViewBottomConst!.isActive = true
+    }
+
+    
 }
 
 

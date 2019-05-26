@@ -9,22 +9,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "StarWars/StarWarsTrimmedDataViewController.swift"
-            timestampString = "580509075.531981"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "fetchVehiclesOfSelectedCharacter()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "StarWars/StarWarsFetchCharacterTransportersOperation.swift"
             timestampString = "580509075.532091"
             startingColumnNumber = "9223372036854775807"
@@ -42,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StarWars/StarWarsTrimmedDataViewController.swift"
-            timestampString = "580509075.532189"
+            timestampString = "580590998.160391"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "transporterFetched(_:ofType:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -28,6 +28,9 @@ class StarWarsTrimmedDataDisplayTableView: UITableView {
         self.sectionHeaderHeight = 50.0
         
         dataSource = self
+        delegate = self
+        
+        backgroundColor = UIColor.init(red: 26.0/155.0, green: 32.0/155.0, blue: 36.0/155.0, alpha: 1.0)
     }
     
     
@@ -39,14 +42,15 @@ class StarWarsTrimmedDataDisplayTableView: UITableView {
     func addVehicleDetailDataSource(_ dataSource: StarWarsDetailDataSource) {
         
         self.trimmedVehicleDataSource.append(dataSource)
-        self.reloadSections(IndexSet.init(integer: 0), with: .automatic)
+        self.insertRows(at: [IndexPath(row: trimmedVehicleDataSource.count-1, section: 0)], with: .automatic)
     }
     
     
     func addStarshipDetailDataSource(_ dataSource: StarWarsDetailDataSource) {
         
         self.trimmedStarshipDataSource.append(dataSource)
-        self.reloadSections(IndexSet.init(integer: 1), with: .automatic)
+        self.insertRows(at: [IndexPath(row: trimmedStarshipDataSource.count-1, section: 1)], with: .automatic)
+
         
     }
 }
@@ -60,20 +64,7 @@ extension StarWarsTrimmedDataDisplayTableView: UITableViewDataSource {
     }
     
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        if section == 0 {
-            return "Vehicles"
-        }
-        else {
-            return "Starships"
-        }
-    }
-    
-    
-    
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if section == 0 {
             return self.trimmedVehicleDataSource.count
@@ -140,5 +131,29 @@ extension StarWarsTrimmedDataDisplayTableView: UITableViewDataSource {
         
     }
     
+    
+}
+
+
+
+extension StarWarsTrimmedDataDisplayTableView: UITableViewDelegate {
+    
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        
+        let label: UILabel = UILabel()
+        label.textAlignment = .center
+        label.textColor = UIColor.lightText
+        label.font = UIFont.boldSystemFont(ofSize: 25.0)
+        
+        if section == 0 {
+            label.text = "Vehicles"
+        }
+        else {
+            label.text = "Starships"
+        }
+        return label
+    }
     
 }

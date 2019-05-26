@@ -40,6 +40,8 @@ class StarWarsTrimmedDataViewController: UIViewController {
         trimmedTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         trimmedTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         trimmedTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        self.title = "Vehicles & Starships"
     }
     
     
@@ -49,6 +51,22 @@ class StarWarsTrimmedDataViewController: UIViewController {
         
         fetchVehiclesOfSelectedCharacter()
         fetchStarshipsOfSelectedCharacter()
+        
+        setupNavigationItem()
+    }
+    
+    
+    
+    func setupNavigationItem() {
+        
+        let doneBarButtonItem: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped(_:)))
+        self.navigationItem.rightBarButtonItem = doneBarButtonItem
+    }
+    
+    
+    
+    @objc func doneButtonTapped(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
     
 }
