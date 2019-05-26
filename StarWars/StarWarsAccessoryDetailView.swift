@@ -48,6 +48,8 @@ class StarWarsAccessoryDetailView: UIView {
         view!.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         view!.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         view!.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+        updateSegmentControlTitles()
     }
     
     
@@ -63,11 +65,17 @@ class StarWarsAccessoryDetailView: UIView {
     
     
     
-    func updateSegmentControlTitles(withList list: [String]) {
+    func updateSegmentControlTitles() {
         
-        if list.isEmpty == false {
-            self.unitToggleSegmentControl.setTitle(list.first!, forSegmentAt: 0)
-            self.unitToggleSegmentControl.setTitle(list[1], forSegmentAt: 1)
+        let titles: [String]? = accessoryDelegate?.segmentControlTitles
+        
+        if let titles = titles {
+            if titles.isEmpty == false {
+                self.unitToggleSegmentControl.setTitle(titles.first!, forSegmentAt: 0)
+                self.unitToggleSegmentControl.setTitle(titles[1], forSegmentAt: 1)
+                
+                
+            }
         }
     }
     
@@ -80,6 +88,4 @@ class StarWarsAccessoryDetailView: UIView {
         accessoryDelegate = nil
     }
     
-  
-
 }

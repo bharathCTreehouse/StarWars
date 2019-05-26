@@ -37,7 +37,8 @@ class StarWarsLengthUnitToggleTableViewCell: UITableViewCell {
         
         self.accessoryDetailView.view!.backgroundColor = UIColor.init(red: 26.0/155.0, green: 32.0/155.0, blue: 36.0/155.0, alpha: 1.0)
         
-        self.accessoryDetailView.updateSegmentControlTitles(withList: segmentControlTitles)
+        
+        selectionStyle = .none
         
     }
     

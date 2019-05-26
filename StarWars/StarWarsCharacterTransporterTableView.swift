@@ -82,6 +82,7 @@ extension StarWarsCharacterTransporterTableView: UITableViewDataSource {
         if cell == nil {
             cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
         }
+        cell!.selectionStyle = .none
         
         cell!.backgroundColor = UIColor.init(red: 26.0/155.0, green: 32.0/155.0, blue: 36.0/155.0, alpha: 1.0)
         
