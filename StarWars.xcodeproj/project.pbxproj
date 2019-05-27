@@ -28,6 +28,7 @@
 		8E2E76B02288A36F00901200 /* Transporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2E76AF2288A36F00901200 /* Transporter.swift */; };
 		8E2E76B22288A41900901200 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2E76B12288A41900901200 /* Character.swift */; };
 		8E2E76B42288A77B00901200 /* StarWars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2E76B32288A77B00901200 /* StarWars.swift */; };
+		8E2FA1E3229C73A300CD7314 /* UITableViewCellUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2FA1E2229C73A300CD7314 /* UITableViewCellUtilities.swift */; };
 		8E6DA7F5228E9382000C185B /* StarWarsAccessoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6DA7F4228E9382000C185B /* StarWarsAccessoryDetailView.swift */; };
 		8E6DA7F7228E9396000C185B /* StarWarsAccessoryDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E6DA7F6228E9396000C185B /* StarWarsAccessoryDetailView.xib */; };
 		8E6DA7F92291B2AC000C185B /* SelectionPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6DA7F82291B2AC000C185B /* SelectionPickerView.swift */; };
@@ -77,6 +78,7 @@
 		8E2E76AF2288A36F00901200 /* Transporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transporter.swift; sourceTree = "<group>"; };
 		8E2E76B12288A41900901200 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		8E2E76B32288A77B00901200 /* StarWars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWars.swift; sourceTree = "<group>"; };
+		8E2FA1E2229C73A300CD7314 /* UITableViewCellUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellUtilities.swift; sourceTree = "<group>"; };
 		8E6DA7F4228E9382000C185B /* StarWarsAccessoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsAccessoryDetailView.swift; sourceTree = "<group>"; };
 		8E6DA7F6228E9396000C185B /* StarWarsAccessoryDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarWarsAccessoryDetailView.xib; sourceTree = "<group>"; };
 		8E6DA7F82291B2AC000C185B /* SelectionPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionPickerView.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				4CBCA3A0227639FD00D6D793 /* SingleImageTableViewCell.xib */,
 				4C0CE74E227C4E7200ABC5B2 /* SingleImageWithTitleTableViewDataSource.swift */,
 				8E6DA7F82291B2AC000C185B /* SelectionPickerView.swift */,
+				8E2FA1E2229C73A300CD7314 /* UITableViewCellUtilities.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				8E89A17122932E71002FCD68 /* StarWarsFetchOperation.swift in Sources */,
 				8EEF2F8F228B0A020083679E /* StarWarsDetailDataSource.swift in Sources */,
 				8E7A906F2289F9C000292F83 /* StarWarsFetchResult.swift in Sources */,
+				8E2FA1E3229C73A300CD7314 /* UITableViewCellUtilities.swift in Sources */,
 				8E7A906D2289D12B00292F83 /* StarWarsAPIClient.swift in Sources */,
 				8EEF2F7D228AFE350083679E /* StarWarsDetailViewController.swift in Sources */,
 				8E1811C7228D3132005BAD61 /* StarWarsCostUnitToggleTableViewCell.swift in Sources */,

@@ -51,6 +51,8 @@ class StarWarsDetailTableViewDataSource: NSObject, UITableViewDataSource {
         let mappingPair: [StarWarsAttributeDisplay: String] = data.attributeValueMappingPair[indexPath.row]
         let attribute: StarWarsAttributeDisplay = mappingPair.keys.first!
         
+        let isLastRow: Bool = (indexPath.row == data.attributeValueMappingPair.count-1) ? true : false
+        
         if attribute.canBeConvertedToAlternateUnit == false {
             
             let cell: StarWarsDetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath) as! StarWarsDetailTableViewCell
@@ -63,6 +65,14 @@ class StarWarsDetailTableViewDataSource: NSObject, UITableViewDataSource {
             
             cell.attributeLabel.text = attribute.rawValue
             cell.valueLabel.text = mappingPair.values.first!
+            
+            
+            if isLastRow == true {
+                cell.removeSeparator()
+            }
+            else {
+                cell.addDefaultSeparator()
+            }
             
             return cell
         }
@@ -92,6 +102,14 @@ class StarWarsDetailTableViewDataSource: NSObject, UITableViewDataSource {
                 
                 costUnitCell.updateWith(dataMapper: mappingPair)
                 costUnitCell.updateWith(dataSource: data)
+            }
+            
+            
+            if isLastRow == true {
+                cell.removeSeparator()
+            }
+            else {
+                cell.addDefaultSeparator()
             }
             
             return cell
