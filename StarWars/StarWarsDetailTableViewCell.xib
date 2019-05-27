@@ -20,13 +20,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="attribute" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RKe-Zj-DPa">
-                        <rect key="frame" x="16" y="16" width="66" height="46.5"/>
+                        <rect key="frame" x="16" y="11" width="66" height="56.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="value" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rse-ev-19J">
-                        <rect key="frame" x="122" y="16" width="182" height="46.5"/>
+                        <rect key="frame" x="122" y="11" width="182" height="56.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -34,10 +34,10 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="Rse-ev-19J" secondAttribute="trailing" constant="16" id="8Gl-e1-KQg"/>
-                    <constraint firstAttribute="bottom" secondItem="RKe-Zj-DPa" secondAttribute="bottom" constant="16" id="BbA-6g-eQQ"/>
-                    <constraint firstItem="RKe-Zj-DPa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="L4q-A1-x10"/>
-                    <constraint firstAttribute="bottom" secondItem="Rse-ev-19J" secondAttribute="bottom" constant="16" id="UnU-bw-FDn"/>
-                    <constraint firstItem="Rse-ev-19J" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="ZKD-dU-9OQ"/>
+                    <constraint firstAttribute="bottom" secondItem="RKe-Zj-DPa" secondAttribute="bottom" constant="11" id="BbA-6g-eQQ"/>
+                    <constraint firstItem="RKe-Zj-DPa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="L4q-A1-x10"/>
+                    <constraint firstAttribute="bottom" secondItem="Rse-ev-19J" secondAttribute="bottom" constant="11" id="UnU-bw-FDn"/>
+                    <constraint firstItem="Rse-ev-19J" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="ZKD-dU-9OQ"/>
                     <constraint firstItem="RKe-Zj-DPa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="fXb-Ln-Y1A"/>
                     <constraint firstItem="Rse-ev-19J" firstAttribute="leading" secondItem="RKe-Zj-DPa" secondAttribute="trailing" constant="40" id="zez-Dj-mgh"/>
                 </constraints>

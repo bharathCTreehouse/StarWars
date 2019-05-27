@@ -48,7 +48,7 @@ class StarWarsViewData: StarWarsDetailDataSource {
         return UIColor(red: 123.0/155.0, green: 208.0/155.0, blue: 254.0/155.0, alpha: 1.0)
     }
     var attributeFont: UIFont {
-        return UIFont.boldSystemFont(ofSize: 20.0)
+        return UIFont.boldSystemFont(ofSize: 18.0)
     }
     
     
@@ -56,7 +56,7 @@ class StarWarsViewData: StarWarsDetailDataSource {
         return UIColor(red: 230.0/155.0, green: 230.0/155.0, blue: 230.0/155.0, alpha: 1.0)
     }
     var attributeValueFont: UIFont {
-        return UIFont.boldSystemFont(ofSize: 21.0)
+        return UIFont.boldSystemFont(ofSize: 17.0)
     }
     
     

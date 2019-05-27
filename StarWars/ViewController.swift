@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         starWarsIntroTableView!.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         starWarsIntroTableView!.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
-        self.title = "Star Wars"
+        self.navigationItem.title = "Star Wars"
         
     }
     
