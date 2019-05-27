@@ -19,7 +19,7 @@ enum StarWarsError: Error {
 
 class StarWarsAPIClient {
     
-    func fetchAllCharacters(forRequest request: URLRequest, withCompletionHandler handler: @escaping  (([Character], String?, StarWarsError?) -> Void)) {
+    func fetchAllCharacters(forRequest request: URLRequest, withCompletionHandler handler: @escaping  (([Character], String?, Error?) -> Void)) {
         
         let session: URLSession = URLSession(configuration: .default)
         
@@ -29,7 +29,7 @@ class StarWarsAPIClient {
             DispatchQueue.main.async {
                 
                 if error != nil {
-                    handler([],nil, error as? StarWarsError)
+                    handler([],nil, error)
                     return
                 }
                 
@@ -49,22 +49,22 @@ class StarWarsAPIClient {
                                 handler(fetchResult.people,fetchResult.next, nil)
                             }
                             catch let error {
-                                handler([],nil, .jsonParsingFailure(message: error.localizedDescription))
+                                handler([],nil, StarWarsError.jsonParsingFailure(message: error.localizedDescription))
                             }
                             
                         }
                         else {
-                            handler([],nil, .invalidData)
+                            handler([],nil, StarWarsError.invalidData)
                         }
                         
                     }
                     else {
-                        handler([],nil, .failedResponse)
+                        handler([],nil, StarWarsError.failedResponse)
                     }
                     
                 }
                 else {
-                    handler([],nil, .invalidResponse)
+                    handler([],nil, StarWarsError.invalidResponse)
                 }
                 
                 
@@ -76,7 +76,7 @@ class StarWarsAPIClient {
     }
     
     
-    func fetchAllTransporters(forRequest request: URLRequest, withCompletionHandler handler: @escaping (([Transporter], String?, StarWarsError?) -> Void)) {
+    func fetchAllTransporters(forRequest request: URLRequest, withCompletionHandler handler: @escaping (([Transporter], String?, Error?) -> Void)) {
         
         
         let session: URLSession = URLSession(configuration: .default)
@@ -87,7 +87,7 @@ class StarWarsAPIClient {
             DispatchQueue.main.async {
                 
                 if error != nil {
-                    handler([],nil, error as? StarWarsError)
+                    handler([],nil, error)
                     return
                 }
                 
@@ -107,22 +107,22 @@ class StarWarsAPIClient {
                                 handler(fetchResult.movables, fetchResult.next, nil)
                             }
                             catch let error {
-                                handler([], nil, .jsonParsingFailure(message: error.localizedDescription))
+                                handler([], nil, StarWarsError.jsonParsingFailure(message: error.localizedDescription))
                             }
                             
                         }
                         else {
-                            handler([],nil, .invalidData)
+                            handler([],nil, StarWarsError.invalidData)
                         }
                         
                     }
                     else {
-                        handler([],nil, .failedResponse)
+                        handler([],nil, StarWarsError.failedResponse)
                     }
                     
                 }
                 else {
-                    handler([], nil, .invalidResponse)
+                    handler([], nil, StarWarsError.invalidResponse)
                 }
                 
                 

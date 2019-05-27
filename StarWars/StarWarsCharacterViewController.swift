@@ -34,6 +34,7 @@ class StarWarsCharacterViewController: StarWarsDetailViewController {
         super.viewDidLoad()
         factsView.update(withFactsDataSource: StarWarsFactsData(withSizeList: allCharacters))
         setupNavigationBarButtonItem()
+        updateNavigationTitle(with: allCharacters.first?.name ?? "")
     }
     
     
@@ -55,6 +56,7 @@ class StarWarsCharacterViewController: StarWarsDetailViewController {
         let selectedPerson: Character = allCharacters[index]
         let newCharacterViewData: StarWarsCharacterViewData  = StarWarsCharacterViewData(withCharacter: selectedPerson)
         detailTableView.updateDataSource(newCharacterViewData)
+        updateNavigationTitle(with: selectedPerson.name)
         super.selectedPickerIndex(index: index)
     }
     
@@ -177,7 +179,7 @@ extension StarWarsCharacterViewController {
             let apiClient: StarWarsAPIClient = StarWarsAPIClient()
             let urlReq: URLRequest = URLRequest(url: url)
             
-            apiClient.fetchAllCharacters(forRequest: urlReq, withCompletionHandler:  { [unowned self] (people: [Character], nextUrlStr: String?, error: StarWarsError?) -> Void in
+            apiClient.fetchAllCharacters(forRequest: urlReq, withCompletionHandler:  { [unowned self] (people: [Character], nextUrlStr: String?, error: Error?) -> Void in
                 
                 self.pickerView.toggleAdditionalViewToInProgressState(false)
 

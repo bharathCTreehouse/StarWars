@@ -21,8 +21,7 @@ class StarWarsDetailViewController: UIViewController, SelectionPickerViewProtoco
     
     lazy var pickerView: SelectionPickerView = {
         
-        let activityViewData: StarWarsActivityIndicatorData = StarWarsActivityIndicatorData(withButtonAttrs: [.title("Show more"), .titleColor(UIColor(red: 123.0/155.0, green: 208.0/155.0, blue: 254.0/155.0, alpha: 1.0)), .titleFont(UIFont.boldSystemFont(ofSize: 19.0))], activityIndicatorAttr: .style(.white), color: UIColor.black)
-        
+        let activityViewData: StarWarsActivityIndicatorData = StarWarsActivityIndicatorData(withButtonAttrs: [.title("Show more"), .titleFont(UIFont.boldSystemFont(ofSize: 19.0))], activityIndicatorAttr: .style(.gray), color: UIColor.white)
         
         return SelectionPickerView(withList: [], delegate: self, additionalViewDataSource: activityViewData, additionalViewDelegate: self)
     }()
@@ -158,6 +157,16 @@ extension StarWarsDetailViewController {
         self.tableViewBottomConst!.isActive = true
     }
 
+    
+}
+
+
+
+extension StarWarsDetailViewController {
+    
+    func updateNavigationTitle(with title: String) {
+        self.navigationItem.title = title
+    }
     
 }
 

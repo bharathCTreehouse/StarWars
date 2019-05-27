@@ -33,6 +33,7 @@ class StarWarsTransporterViewController: StarWarsDetailViewController {
         
         super.viewDidLoad()
         factsView.update(withFactsDataSource: StarWarsFactsData(withSizeList: allTransporters))
+        updateNavigationTitle(with: allTransporters.first?.name ?? "")
     }
     
     
@@ -40,6 +41,7 @@ class StarWarsTransporterViewController: StarWarsDetailViewController {
         let selectedTransporter: Transporter = allTransporters[index]
         let newTransporterViewData: StarWarsTransporterViewData  = StarWarsTransporterViewData(withTransporter: selectedTransporter)
         detailTableView.updateDataSource(newTransporterViewData)
+        updateNavigationTitle(with: selectedTransporter.name)
         super.selectedPickerIndex(index: index)
     }
     
@@ -114,7 +116,7 @@ extension StarWarsTransporterViewController {
             let apiClient: StarWarsAPIClient = StarWarsAPIClient()
             let urlReq: URLRequest = URLRequest(url: url)
             
-            apiClient.fetchAllTransporters(forRequest: urlReq, withCompletionHandler:  { [unowned self] (movables: [Transporter], nextUrlStr: String?, error: StarWarsError?) -> Void in
+            apiClient.fetchAllTransporters(forRequest: urlReq, withCompletionHandler:  { [unowned self] (movables: [Transporter], nextUrlStr: String?, error: Error?) -> Void in
                 
                 self.pickerView.toggleAdditionalViewToInProgressState(false)
                 

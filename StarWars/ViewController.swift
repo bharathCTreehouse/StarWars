@@ -54,7 +54,7 @@ extension ViewController: UITableViewDelegate {
             let characterEndpoint: StarWars = StarWars.character(.all)
             let characterReq: URLRequest? = characterEndpoint.urlRequest
             
-            apiClient.fetchAllCharacters(forRequest: characterReq!, withCompletionHandler: { (people: [Character], nextUrlString: String?, error: StarWarsError?) -> Void in
+            apiClient.fetchAllCharacters(forRequest: characterReq!, withCompletionHandler: { (people: [Character], nextUrlString: String?, error: Error?) -> Void in
                 
                 if error == nil {
                     
@@ -82,7 +82,7 @@ extension ViewController: UITableViewDelegate {
             }
             
             
-            apiClient.fetchAllTransporters(forRequest: transportRequest, withCompletionHandler: { (movables: [Transporter], nextUrlString: String?, error: StarWarsError?) -> Void in
+            apiClient.fetchAllTransporters(forRequest: transportRequest, withCompletionHandler: { (movables: [Transporter], nextUrlString: String?, error: Error?) -> Void in
                 
                 if error == nil {
                     

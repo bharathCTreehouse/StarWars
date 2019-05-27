@@ -69,6 +69,9 @@ class StarWarsActivityIndicatorView: UIView {
         
         animateActivityIndicator(false)
         
+        layer.borderWidth = 0.3
+        layer.borderColor = button.currentTitleColor.cgColor
+        
     }
     
     

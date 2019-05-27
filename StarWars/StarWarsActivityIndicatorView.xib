@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNJ-1k-usN">
-                    <rect key="frame" x="16" y="52" width="342" height="802"/>
+                    <rect key="frame" x="16" y="52" width="358" height="802"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="Button"/>
                     <connections>
@@ -35,7 +35,7 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="5V3-iT-Eyq" firstAttribute="leading" secondItem="uNJ-1k-usN" secondAttribute="trailing" constant="20" id="FOc-qg-tsw"/>
+                <constraint firstItem="5V3-iT-Eyq" firstAttribute="leading" secondItem="uNJ-1k-usN" secondAttribute="trailing" constant="4" id="FOc-qg-tsw"/>
                 <constraint firstItem="uNJ-1k-usN" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="H8r-vT-oLe"/>
                 <constraint firstItem="5V3-iT-Eyq" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="ToN-zn-lMF"/>
                 <constraint firstItem="uNJ-1k-usN" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="VOP-4d-33l"/>
