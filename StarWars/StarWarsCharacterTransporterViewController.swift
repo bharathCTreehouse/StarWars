@@ -132,16 +132,30 @@ extension StarWarsCharacterTransporterViewController {
 extension StarWarsCharacterTransporterViewController: StarWarsFetchCharacterTransporterCompletionProtocol {
     
     
-    func transporterFetched(_ transporter: Transporter, ofType type: TransporterType) {
+    func transporterFetched(_ transporter: Transporter?, ofType type: TransporterType, withError error: Error?) {
         
-        let viewModel: StarWarsTrimmedTransporterViewData = StarWarsTrimmedTransporterViewData(withTransporter: transporter)
-        
-        if type == .vehicle {
-            trimmedTableView.addVehicleDetailDataSource(viewModel)
+        if let error = error {
+            
+            if error.isUrlDataTaskCancelled == false {
+                showAlertController(forError: error, defaultStyleButtonTitle: "OK", alertControllerTitle: "Error")
+            }
+            characterTransporterOperationQueue.cancelAllOperations()
+            person.listOfVehicles.removeAll()
+            person.listOfStarships.removeAll()
         }
-        else if type == .starship {
-            trimmedTableView.addStarshipDetailDataSource(viewModel)
+        else {
+            
+            if let transporter = transporter {
+                
+                let viewModel: StarWarsTrimmedTransporterViewData = StarWarsTrimmedTransporterViewData(withTransporter: transporter)
+                
+                if type == .vehicle {
+                    trimmedTableView.addVehicleDetailDataSource(viewModel)
+                }
+                else if type == .starship {
+                    trimmedTableView.addStarshipDetailDataSource(viewModel)
+                }
+            }
         }
     }
-    
 }

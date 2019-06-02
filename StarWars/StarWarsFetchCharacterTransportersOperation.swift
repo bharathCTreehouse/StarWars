@@ -14,7 +14,7 @@ enum TransporterType {
 }
 
 protocol StarWarsFetchCharacterTransporterCompletionProtocol: class {
-    func transporterFetched(_ transporter: Transporter, ofType type: TransporterType )
+    func transporterFetched(_ transporter: Transporter?, ofType type: TransporterType, withError error: Error?)
 }
 
 
@@ -30,12 +30,14 @@ class StarWarsFetchCharacterTransportersOperation: StarWarsFetchOperation {
         self.person = person
         self.type = type
         self.delegate = delegate
-        super.init(withUrl: url)
+        super.init(withUrl: url, errorInformerDelegate: nil)
         
     }
     
     
     override func main() {
+        
+        errorInformerDelegate = self
         
         super.main()
         
@@ -46,6 +48,7 @@ class StarWarsFetchCharacterTransportersOperation: StarWarsFetchOperation {
                 unowned let weakSelf = self
                 
                 if self.isCancelled == true {
+                    weakSelf.delegate?.transporterFetched(nil, ofType: weakSelf.type, withError: StarWarsError.operationCancelled)
                     return
                 }
                 
@@ -57,22 +60,24 @@ class StarWarsFetchCharacterTransportersOperation: StarWarsFetchOperation {
                     
                     if weakSelf.type == .vehicle {
                         weakSelf.person.listOfVehicles.append(transporter)
-                        weakSelf.delegate?.transporterFetched(transporter, ofType: .vehicle)
+                        weakSelf.delegate?.transporterFetched(transporter, ofType: .vehicle, withError: nil)
                     }
                     else {
                         weakSelf.person.listOfStarships.append(transporter)
-                        weakSelf.delegate?.transporterFetched(transporter, ofType: .starship)
+                        weakSelf.delegate?.transporterFetched(transporter, ofType: .starship, withError: nil)
 
                     }
                     
                 }
-                catch let error {
-                    print("Err: \(error.localizedDescription)")
-                    print("Error: \(error)")
+                catch {
+                     weakSelf.delegate?.transporterFetched(nil, ofType: weakSelf.type, withError: StarWarsError.jsonParsingFailure(message: "Failed to parse json."))
                     return
                 }
             }
             
+        }
+        else {
+            errorInformerDelegate = nil
         }
         
     }
@@ -82,4 +87,13 @@ class StarWarsFetchCharacterTransportersOperation: StarWarsFetchOperation {
         delegate = nil
     }
     
+}
+
+
+extension StarWarsFetchCharacterTransportersOperation: StarWarsFetchOperationErrorInformer {
+    
+    
+    func errorOccurred(_ error: Error) {
+        delegate?.transporterFetched(nil, ofType: self.type, withError: error)
+    }
 }

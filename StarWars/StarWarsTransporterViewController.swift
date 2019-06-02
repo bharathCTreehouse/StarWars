@@ -93,7 +93,51 @@ extension StarWarsTransporterViewController {
     
     @objc func costUnitToggleTriggered(withNotification notification: Notification) {
         
-        print("costUnitToggleTriggered--Transporter")
+        
+        let viewModel: StarWarsTransporterViewData? = detailTableView.tableViewDataSource.data as? StarWarsTransporterViewData
+        
+        
+        if let viewModel = viewModel {
+            
+            if viewModel.currency == .credits {
+                
+                //Show alert with text field
+                
+                let textFieldData: AlertControllerTextFieldData = AlertControllerTextFieldData(placeHolderText: nil, borderType: .line, defaultText: "1.0", keypadType: .decimalPad)
+                let actionData: AlertControllerActionData =  AlertControllerActionData(actionTitle: "OK", actionStyle: .default)
+                let alertData: AlertControllerData = AlertControllerData(title: nil, message: "Enter exchange rate", alertActions: [actionData], textFieldData: [textFieldData])
+                
+                let alertCont: UIAlertController = AlertViewController.alertController(withAlertControllerData: alertData, completionHandler: { [unowned self] (actionIndex: Int, textFieldStrings: [String]?) -> Void in
+                    
+                    if let strings = textFieldStrings {
+                        
+                        if strings.isEmpty == false {
+                            
+                            let excRate: Double? = Double(strings.first!)
+                            guard let unwrappedExcRate = excRate else {
+                                self.reloadDetailTableView(atIndexPath: IndexPath(row: 1, section: 0))
+                                return
+                            }
+                            
+                            viewModel.toggleCurrency(withExchangeRate: unwrappedExcRate)
+                            self.reloadDetailTableView(atIndexPath: IndexPath(row: 1, section: 0))
+
+                            
+                        }
+                    }
+                   
+                    
+                })
+                
+                self.present(alertCont, animated: true, completion: nil)
+            }
+            else if viewModel.currency == .USD {
+                viewModel.toggleCurrency()
+                reloadDetailTableView(atIndexPath: IndexPath(row: 1, section: 0))
+            }
+            
+        }
+        
 
     }
     
@@ -116,11 +160,16 @@ extension StarWarsTransporterViewController {
             let apiClient: StarWarsAPIClient = StarWarsAPIClient()
             let urlReq: URLRequest = URLRequest(url: url)
             
-            apiClient.fetchAllTransporters(forRequest: urlReq, withCompletionHandler:  { [unowned self] (movables: [Transporter], nextUrlStr: String?, error: Error?) -> Void in
+            apiClient.fetchAllTransporters(forRequest: urlReq, withCompletionHandler:  { [unowned self] (movables: [Transporter], nextUrlState: StarWarsNextSetUrlReceiverType, error: Error?) -> Void in
                 
                 self.pickerView.toggleAdditionalViewToInProgressState(false)
                 
-                self.nextSetUrlString = nextUrlStr
+                switch nextUrlState {
+                case let .update(withUrlString:nextUrlStr):                 self.nextSetUrlString = nextUrlStr
+                default: break
+                    
+                }
+                
                 
                 if error == nil {
                     
@@ -137,6 +186,9 @@ extension StarWarsTransporterViewController {
                 }
                 else {
                     //Show alert.
+                    if error!.isUrlDataTaskCancelled == false {
+                        self.showAlert(forError: error!)
+                    }
                 }
                 
             })

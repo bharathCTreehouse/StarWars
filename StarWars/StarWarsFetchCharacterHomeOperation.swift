@@ -22,7 +22,7 @@ class StarWarsFetchCharacterHomeOperation: StarWarsFetchOperation {
         
         self.person = person
         self.delegate = delegate
-        super.init(withUrl: person.homeURL)
+        super.init(withUrl: person.homeURL, errorInformerDelegate: nil)
     }
     
     
@@ -55,6 +55,11 @@ class StarWarsFetchCharacterHomeOperation: StarWarsFetchOperation {
             
         }
         
+    }
+    
+    
+    deinit {
+        delegate = nil
     }
     
 }

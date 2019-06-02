@@ -46,7 +46,6 @@ class StarWarsCostUnitToggleTableViewCell: UITableViewCell {
     }
     
     
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -56,6 +55,7 @@ class StarWarsCostUnitToggleTableViewCell: UITableViewCell {
         
         accessoryDetailView.attributeLabel.text = attributeValueMapper.keys.first!.rawValue
         accessoryDetailView.attributeValueLabel.text = attributeValueMapper.values.first!
+        validateSegmentControlState()
     }
     
     
@@ -66,6 +66,29 @@ class StarWarsCostUnitToggleTableViewCell: UITableViewCell {
         
         accessoryDetailView.attributeValueLabel.textColor = data.attributeValueColor
         accessoryDetailView.attributeValueLabel.font = data.attributeValueFont
+        
+        let baseSource: StarWarsTransporterViewData? = data as? StarWarsTransporterViewData
+        if baseSource?.currency == .credits {
+            accessoryDetailView.unitToggleSegmentControl.selectedSegmentIndex = 0
+        }
+        else {
+            accessoryDetailView.unitToggleSegmentControl.selectedSegmentIndex = 1
+            
+        }
+    }
+    
+    
+    
+    func validateSegmentControlState() {
+        
+        if let _ = Double(accessoryDetailView.attributeLabel.text ?? "") {
+            accessoryDetailView.unitToggleSegmentControl.isEnabled = false
+            accessoryDetailView.unitToggleSegmentControl.alpha = 0.4
+        }
+        else {
+            accessoryDetailView.unitToggleSegmentControl.isEnabled = true
+            accessoryDetailView.unitToggleSegmentControl.alpha = 1.0
+        }
     }
 }
 

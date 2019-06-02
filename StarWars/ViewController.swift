@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     var starWarsIntroTableView: SingleImageDisplayableTableView? = nil
     let apiClient: StarWarsAPIClient = StarWarsAPIClient()
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,8 +34,26 @@ class ViewController: UIViewController {
         starWarsIntroTableView!.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         starWarsIntroTableView!.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
+    
         self.navigationItem.title = "Star Wars"
         
+        configureNavigationBarButtonItem()
+        
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        animateProgressIndicator(false)
+    }
+    
+    
+    
+    func configureNavigationBarButtonItem() {
+        
+        let activityView: UIActivityIndicatorView = UIActivityIndicatorView(style: .gray)
+        activityView.hidesWhenStopped = true
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityView)
     }
     
     
@@ -49,22 +68,35 @@ extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        
+        apiClient.cancelAllPendingDataTasks()
+        animateProgressIndicator(true)
+
+
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         if indexPath.row == 0 {
             
             let characterEndpoint: StarWars = StarWars.character(.all)
             let characterReq: URLRequest? = characterEndpoint.urlRequest
             
-            apiClient.fetchAllCharacters(forRequest: characterReq!, withCompletionHandler: { (people: [Character], nextUrlString: String?, error: Error?) -> Void in
+
+            apiClient.fetchAllCharacters(forRequest: characterReq!, withCompletionHandler: { [unowned self] (people: [Character], nextUrlState: StarWarsNextSetUrlReceiverType, error: Error?) -> Void in
                 
                 if error == nil {
                     
-                    let detailVC: StarWarsCharacterViewController = StarWarsCharacterViewController(withListOfCharacters: people, nextSetUrlString: nextUrlString)
+                    let detailVC: StarWarsCharacterViewController = StarWarsCharacterViewController(withListOfCharacters: people, nextSetUrlString: nextUrlState.urlString)
                     self.navigationController?.pushViewController(detailVC, animated: true)
                     
                 }
                 else {
-                    print("Error: \(error!)")
+                    if error!.isUrlDataTaskCancelled == false {
+                        self.showAlert(forError: error!)
+                        self.animateProgressIndicator(false)
+                    }
+
                 }
+                
             })
             
         }
@@ -81,23 +113,62 @@ extension ViewController: UITableViewDelegate {
                 transportRequest = starshipEndpoint.urlRequest!
             }
             
-            
-            apiClient.fetchAllTransporters(forRequest: transportRequest, withCompletionHandler: { (movables: [Transporter], nextUrlString: String?, error: Error?) -> Void in
+            apiClient.fetchAllTransporters(forRequest: transportRequest, withCompletionHandler: { [unowned self] (movables: [Transporter], nextUrlState: StarWarsNextSetUrlReceiverType, error: Error?) -> Void in
                 
                 if error == nil {
                     
-                    let detailVC: StarWarsTransporterViewController = StarWarsTransporterViewController(withListOfTransporters: movables, nextSetUrlString: nextUrlString)
+                    let detailVC: StarWarsTransporterViewController = StarWarsTransporterViewController(withListOfTransporters: movables, nextSetUrlString: nextUrlState.urlString)
                     self.navigationController?.pushViewController(detailVC, animated: true)
                     
                 }
                 else {
-                    print("Error: \(error!)")
+                    if error!.isUrlDataTaskCancelled == false {
+                        self.showAlert(forError: error!)
+                        self.animateProgressIndicator(false)
+                    }
                 }
+                
                 
             })
             
         }
         
     }
+}
+
+
+
+extension ViewController {
+    
+    
+    func animateProgressIndicator(_ animate: Bool) {
+        
+        let activityView: UIActivityIndicatorView? =  navigationItem.rightBarButtonItem?.customView as? UIActivityIndicatorView
+        
+        if let activityView = activityView {
+            if animate == true {
+                activityView.startAnimating()
+            }
+            else {
+                activityView.stopAnimating()
+            }
+        }
+        
+    }
+    
+}
+
+
+
+
+extension ViewController {
+    
+    
+    func showAlert(forError error: Error) {
+        
+        showAlertController(forError: error, defaultStyleButtonTitle: "OK", alertControllerTitle: "Error")
+        
+    }
+    
 }
 

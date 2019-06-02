@@ -171,3 +171,12 @@ extension StarWarsDetailViewController {
 }
 
 
+
+extension StarWarsDetailViewController {
+    
+    func showAlert(forError error: Error) {
+        showAlertController(forError: error, defaultStyleButtonTitle: "OK", alertControllerTitle: "Error")
+    }
+}
+
+

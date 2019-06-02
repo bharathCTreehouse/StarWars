@@ -179,11 +179,15 @@ extension StarWarsCharacterViewController {
             let apiClient: StarWarsAPIClient = StarWarsAPIClient()
             let urlReq: URLRequest = URLRequest(url: url)
             
-            apiClient.fetchAllCharacters(forRequest: urlReq, withCompletionHandler:  { [unowned self] (people: [Character], nextUrlStr: String?, error: Error?) -> Void in
+            apiClient.fetchAllCharacters(forRequest: urlReq, withCompletionHandler:  { [unowned self] (people: [Character], nextUrlState: StarWarsNextSetUrlReceiverType, error: Error?) -> Void in
                 
                 self.pickerView.toggleAdditionalViewToInProgressState(false)
+                
+                switch nextUrlState {
+                    case let .update(withUrlString:nextUrlStr):                 self.nextSetUrlString = nextUrlStr
+                    default: break
 
-                self.nextSetUrlString = nextUrlStr
+                }
                 
                 if error == nil {
                     
@@ -200,6 +204,9 @@ extension StarWarsCharacterViewController {
                 }
                 else {
                     //Show alert.
+                    if error!.isUrlDataTaskCancelled == false{
+                        self.showAlert(forError: error!)
+                    }
                 }
                 
             })
@@ -209,3 +216,7 @@ extension StarWarsCharacterViewController {
     }
     
 }
+
+
+
+
