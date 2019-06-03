@@ -8,11 +8,6 @@
 
 import Foundation
 
-protocol StarWarsSizeAndNameIdentifiable {
-    var sizeOfComponent: Double { get }
-    var nameOfComponent: String { get }
-}
-
 
 class StarWarsFactsData {
     

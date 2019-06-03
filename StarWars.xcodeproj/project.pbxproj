@@ -42,6 +42,7 @@
 		8E89A17122932E71002FCD68 /* StarWarsFetchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E89A17022932E71002FCD68 /* StarWarsFetchOperation.swift */; };
 		8E89A17322932FCA002FCD68 /* StarWarsFetchCharacterHomeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E89A17222932FCA002FCD68 /* StarWarsFetchCharacterHomeOperation.swift */; };
 		8E954878229EB47A003CAB2A /* ErrorUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E954877229EB47A003CAB2A /* ErrorUtilities.swift */; };
+		8E9B67EF22A5A81F00C25586 /* StarWarsComponentIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9B67EE22A5A81F00C25586 /* StarWarsComponentIdentifiable.swift */; };
 		8E9E6C3C22970C5F000CCDDF /* StarWarsActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9E6C3B22970C5F000CCDDF /* StarWarsActivityIndicatorView.swift */; };
 		8E9E6C3E22970C89000CCDDF /* StarWarsActivityIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E9E6C3D22970C89000CCDDF /* StarWarsActivityIndicatorView.xib */; };
 		8E9E6C40229724F0000CCDDF /* StarWarsActivityIndicatorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9E6C3F229724F0000CCDDF /* StarWarsActivityIndicatorData.swift */; };
@@ -98,6 +99,7 @@
 		8E89A17022932E71002FCD68 /* StarWarsFetchOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsFetchOperation.swift; sourceTree = "<group>"; };
 		8E89A17222932FCA002FCD68 /* StarWarsFetchCharacterHomeOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsFetchCharacterHomeOperation.swift; sourceTree = "<group>"; };
 		8E954877229EB47A003CAB2A /* ErrorUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorUtilities.swift; sourceTree = "<group>"; };
+		8E9B67EE22A5A81F00C25586 /* StarWarsComponentIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsComponentIdentifiable.swift; sourceTree = "<group>"; };
 		8E9E6C3B22970C5F000CCDDF /* StarWarsActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsActivityIndicatorView.swift; sourceTree = "<group>"; };
 		8E9E6C3D22970C89000CCDDF /* StarWarsActivityIndicatorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarWarsActivityIndicatorView.xib; sourceTree = "<group>"; };
 		8E9E6C3F229724F0000CCDDF /* StarWarsActivityIndicatorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsActivityIndicatorData.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				8EEF2F8E228B0A020083679E /* StarWarsDetailDataSource.swift */,
+				8E9B67EE22A5A81F00C25586 /* StarWarsComponentIdentifiable.swift */,
 			);
 			name = DataSource;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				8E9E6C40229724F0000CCDDF /* StarWarsActivityIndicatorData.swift in Sources */,
 				8E32B0F5229E5FFD001D1907 /* AlertControllerActionData.swift in Sources */,
 				4CBCA38A2276261400D6D793 /* ViewController.swift in Sources */,
+				8E9B67EF22A5A81F00C25586 /* StarWarsComponentIdentifiable.swift in Sources */,
 				8EEF2F99228C0E8E0083679E /* StarWarsTransporterViewData.swift in Sources */,
 				4CBCA39A22762C9700D6D793 /* StarWarsIntroductionData.swift in Sources */,
 				8E18B27E22992CB200705CDF /* StarWarsFetchCharacterTransportersOperation.swift in Sources */,

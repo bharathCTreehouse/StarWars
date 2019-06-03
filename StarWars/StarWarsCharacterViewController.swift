@@ -12,27 +12,32 @@ import UIKit
 
 class StarWarsCharacterViewController: StarWarsDetailViewController {
     
-    var allCharacters: [Character]
+    var allCharacters: [Character] = [] {
+        didSet {
+            pickerView.updateTitleList(withList: allCharacters)
+            factsView.update(withFactsDataSource: StarWarsFactsData(withSizeList: allCharacters))
+        }
+    }
+    
     var characterHomeOpQueue: OperationQueue? = OperationQueue.init()
 
     
     init(withListOfCharacters characters: [Character], nextSetUrlString urlString: String? = nil) {
         
-        allCharacters = characters
         super.init(withDetailDataSource: StarWarsCharacterViewData(withCharacter: characters.first!), nextSetUrlString: urlString)
         addLengthUnitToggleNotificationObserver()
+        appendCharacterList(withNewCharacters: characters)
     }
     
    
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        factsView.update(withFactsDataSource: StarWarsFactsData(withSizeList: allCharacters))
         setupNavigationBarButtonItem()
         updateNavigationTitle(with: allCharacters.first?.name ?? "")
     }
@@ -61,17 +66,6 @@ class StarWarsCharacterViewController: StarWarsDetailViewController {
     }
     
     
-    override var allNames: [String] {
-        
-        let names: [String] = allCharacters.compactMap({ (person: Character) -> String in
-            
-            return person.name
-        })
-        return names
-    }
-    
-    
-    
     func setupNavigationBarButtonItem() {
         
         let infoButton: UIButton = UIButton(type: .infoDark)
@@ -83,8 +77,12 @@ class StarWarsCharacterViewController: StarWarsDetailViewController {
     }
     
     
+    func appendCharacterList(withNewCharacters list: [Character]) {
+        allCharacters.append(contentsOf: list)
+    }
+    
+    
     @objc func infoButtonTapped(_ sender: UIButton) {
-        
         
         let selectedPerson: Character? =  (detailTableView.tableViewDataSource.data as? StarWarsCharacterViewData)?.starWarsCharacter
         
@@ -193,12 +191,8 @@ extension StarWarsCharacterViewController {
                     
                     if people.isEmpty == false {
                         
-                        self.allCharacters.append(contentsOf: people)
-                        self.pickerView.updateTitleList(withList: self.allNames)
+                        self.appendCharacterList(withNewCharacters: people)
                         self.fetchHomeNameOfAllCharacters()
-                        
-                        //Recalculate facts and update
-                        self.factsView.update(withFactsDataSource: StarWarsFactsData(withSizeList: self.allCharacters))
                         
                     }
                 }

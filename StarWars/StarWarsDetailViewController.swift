@@ -9,12 +9,8 @@
 import Foundation
 import UIKit
 
-protocol AttributeNameProtocol {
-    var allNames: [String] { get }
-}
 
-
-class StarWarsDetailViewController: UIViewController, SelectionPickerViewProtocol, AttributeNameProtocol {
+class StarWarsDetailViewController: UIViewController, SelectionPickerViewProtocol {
     
     
     private(set) var detailTableView: StarWarsDetailTableView!
@@ -62,7 +58,6 @@ class StarWarsDetailViewController: UIViewController, SelectionPickerViewProtoco
         pickerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         pickerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         pickerView.bottomAnchor.constraint(equalTo: factsView.safeAreaLayoutGuide.topAnchor).isActive = true
-        pickerView.updateTitleList(withList: allNames)
 
         view.addSubview(detailTableView)
         detailTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
@@ -98,13 +93,7 @@ class StarWarsDetailViewController: UIViewController, SelectionPickerViewProtoco
         reloadDetailTableView()
     }
     
-    
-    
-    var allNames: [String] {
-        return []
-    }
-    
-    
+
     deinit {
         nextSetUrlString = nil
         tableViewBottomConst = nil

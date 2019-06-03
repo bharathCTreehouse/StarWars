@@ -12,27 +12,31 @@ import UIKit
 
 class StarWarsTransporterViewController: StarWarsDetailViewController {
     
-    var allTransporters: [Transporter]
+    var allTransporters: [Transporter] = [] {
+        didSet {
+            pickerView.updateTitleList(withList: allTransporters)
+            factsView.update(withFactsDataSource: StarWarsFactsData(withSizeList: allTransporters))
+        }
+    }
     
    
     init(withListOfTransporters transporters: [Transporter], nextSetUrlString urlString: String? = nil) {
         
-        allTransporters = transporters
         super.init(withDetailDataSource: StarWarsTransporterViewData(withTransporter: transporters.first!), nextSetUrlString: urlString)
         addLengthUnitToggleNotificationObserver()
         addCostUnitToggleNotificationObserver()
+        appendTransporterList(withNewTransporters: transporters)
     }
     
     
     required init?(coder aDecoder: NSCoder) {
-        allTransporters = []
         super.init(coder: aDecoder)
     }
+    
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        factsView.update(withFactsDataSource: StarWarsFactsData(withSizeList: allTransporters))
         updateNavigationTitle(with: allTransporters.first?.name ?? "")
     }
     
@@ -46,12 +50,8 @@ class StarWarsTransporterViewController: StarWarsDetailViewController {
     }
     
     
-    override var allNames: [String] {
-        
-        let names: [String] = allTransporters.compactMap({ (transporter: Transporter) -> String in
-            return transporter.name
-        })
-        return names
+    func appendTransporterList(withNewTransporters list: [Transporter]) {
+        allTransporters.append(contentsOf: list)
     }
     
     
@@ -173,17 +173,11 @@ extension StarWarsTransporterViewController {
                     
                 }
                 
-                
                 if error == nil {
                     
                     if movables.isEmpty == false {
                         
-                        self.allTransporters.append(contentsOf: movables)
-                        self.pickerView.updateTitleList(withList: self.allNames)
-                        
-                        //Recalculate facts and update
-                        self.factsView.update(withFactsDataSource: StarWarsFactsData(withSizeList: self.allTransporters))
-
+                        self.appendTransporterList(withNewTransporters: movables)
                         
                     }
                 }

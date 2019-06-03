@@ -22,7 +22,7 @@ protocol SelectionPickerAdditionalViewProtocol: class {
 class SelectionPickerView: UIView {
     
     private var picketView: UIPickerView = UIPickerView()
-    private(set) var titles: [String]
+    private(set) var titles: [StarWarsNameIdentifiable] = []
     weak var delegate: SelectionPickerViewProtocol? = nil
     
     weak var additionalViewDataSource: StarWarsActivityViewDataSource? = nil
@@ -31,7 +31,7 @@ class SelectionPickerView: UIView {
 
     
     
-    init(withList list: [String], delegate: SelectionPickerViewProtocol?, additionalViewDataSource: StarWarsActivityViewDataSource?, additionalViewDelegate: SelectionPickerAdditionalViewProtocol?) {
+    init(withList list: [StarWarsNameIdentifiable], delegate: SelectionPickerViewProtocol?, additionalViewDataSource: StarWarsActivityViewDataSource?, additionalViewDelegate: SelectionPickerAdditionalViewProtocol?) {
         
         titles = list
         self.delegate = delegate
@@ -44,7 +44,7 @@ class SelectionPickerView: UIView {
     
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     
@@ -84,7 +84,7 @@ class SelectionPickerView: UIView {
     }
     
     
-    func updateTitleList(withList list: [String]) {
+    func updateTitleList(withList list: [StarWarsNameIdentifiable]) {
         titles = list
         picketView.reloadAllComponents()
     }
@@ -123,7 +123,7 @@ extension SelectionPickerView: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        return titles[row]
+        return titles[row].nameOfComponent
     }
     
     
