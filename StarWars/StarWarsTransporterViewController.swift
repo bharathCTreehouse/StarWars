@@ -114,8 +114,11 @@ extension StarWarsTransporterViewController {
                         if strings.isEmpty == false {
                             
                             let excRate: Double? = Double(strings.first!)
+                            
                             guard let unwrappedExcRate = excRate else {
                                 self.reloadDetailTableView(atIndexPath: IndexPath(row: 1, section: 0))
+                                
+                                self.showAlertController(withAlertTitle: "Invalid input", alertMessage: "Please enter a valid numerical value for exchange rate.", defaultStyleButtonTitle: "OK")
                                 return
                             }
                             
