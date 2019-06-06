@@ -125,6 +125,13 @@ extension StarWarsTransporterViewController {
                                 return
                             }
                             
+                            if unwrappedExcRate <= 0.0 {
+                                self.reloadDetailTableView(atIndexPath: IndexPath(row: 1, section: 0))
+                                
+                                self.showAlertController(withAlertTitle: "Invalid input", alertMessage: "Please enter a valid numerical value greater than 0 for exchange rate.", defaultStyleButtonTitle: "OK")
+                                return
+                            }
+                            
                             viewModel.toggleCurrency(withExchangeRate: unwrappedExcRate)
                             self.reloadDetailTableView(atIndexPath: IndexPath(row: 1, section: 0))
 

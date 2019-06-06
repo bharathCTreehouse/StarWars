@@ -54,17 +54,27 @@ class StarWarsFetchOperation: Operation {
                 jsonData = data
             }
             else {
-                errorInformerDelegate?.errorOccurred(StarWarsError.invalidData)
-                errorInformerDelegate = nil
-
-                return
-
+                
+                DispatchQueue.main.async  {
+                    
+                    weak var weakSelf = self
+                    weakSelf?.errorInformerDelegate?.errorOccurred(StarWarsError.invalidData)
+                    weakSelf?.errorInformerDelegate = nil
+                    
+                    return
+                }
+                
             }
         }
         catch let error {
-            errorInformerDelegate?.errorOccurred(error)
-            errorInformerDelegate = nil
-            return
+            
+            DispatchQueue.main.async {
+                weak var weakSelf = self
+                weakSelf?.errorInformerDelegate?.errorOccurred(error)
+                weakSelf?.errorInformerDelegate = nil
+                return
+            }
+           
         }
         
     }
