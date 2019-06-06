@@ -10,34 +10,13 @@ import Foundation
 import UIKit
 
 
-class StarWarsLengthUnitToggleTableViewCell: UITableViewCell {
+class StarWarsLengthUnitToggleTableViewCell: StarWarsUnitToggleTableViewCell {
     
     
-    lazy private var accessoryDetailView: StarWarsAccessoryDetailView = {
-        return StarWarsAccessoryDetailView(withDelegate: self)
-    }()
-    
-    
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        
+   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-
-        self.contentView.addSubview(accessoryDetailView)
-        
-        accessoryDetailView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor).isActive = true
-        
-        accessoryDetailView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
-        
-        accessoryDetailView.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
-        
-        accessoryDetailView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor).isActive = true
-        
         self.accessoryDetailView.view!.backgroundColor = UIColor.init(red: 26.0/155.0, green: 32.0/155.0, blue: 36.0/155.0, alpha: 1.0)
-        
-        
         selectionStyle = .none
         
     }
@@ -48,29 +27,20 @@ class StarWarsLengthUnitToggleTableViewCell: UITableViewCell {
     }
     
     
-    func updateWith(dataMapper attributeValueMapper: [StarWarsAttributeDisplay: String]) {
+    override func updateWith(dataMapper attributeValueMapper: [StarWarsAttributeDisplay: String]) {
         
-        accessoryDetailView.attributeLabel.text = attributeValueMapper.keys.first!.rawValue
-        accessoryDetailView.attributeValueLabel.text = attributeValueMapper.values.first!
+        super.updateWith(dataMapper: attributeValueMapper)
+        validateSegmentControlState()
     }
     
     
-    func updateWith(dataSource data: StarWarsDetailDataSource) {
+    func updateSegmentControl(forUnit unit: UnitForLength) {
         
-        accessoryDetailView.attributeLabel.textColor = data.attributeColor
-        accessoryDetailView.attributeLabel.font = data.attributeFont
-        
-        accessoryDetailView.attributeValueLabel.textColor = data.attributeValueColor
-        accessoryDetailView.attributeValueLabel.font = data.attributeValueFont
-        
-        
-        let baseSource: StarWarsViewData? = data as? StarWarsViewData
-        if baseSource?.currentLengthUnit == .metres {
+        if unit == .metres {
             accessoryDetailView.unitToggleSegmentControl.selectedSegmentIndex = 0
         }
         else {
             accessoryDetailView.unitToggleSegmentControl.selectedSegmentIndex = 1
-
         }
     }
     
@@ -78,15 +48,17 @@ class StarWarsLengthUnitToggleTableViewCell: UITableViewCell {
 
 
 
-extension StarWarsLengthUnitToggleTableViewCell: StarWarsAccessoryButtonProtocol {
+extension StarWarsLengthUnitToggleTableViewCell {
     
     
-    func toggleUnitSegmentControl(withSelectedIndex index: Int) {
+    override func toggleUnitSegmentControl(withSelectedIndex index: Int) {
         
+        super.toggleUnitSegmentControl(withSelectedIndex: index)
         NotificationCenter.default.post(name: NSNotification.Name("StarWarsLengthUnitChanged"), object: nil)
     }
     
-    var segmentControlTitles: [String] {
+    
+    override var segmentControlTitles: [String] {
         return ["Metric", "English"]
     }
 

@@ -93,11 +93,11 @@ extension StarWarsCharacterTransporterTableView: UITableViewDataSource {
             
             let dataSource: StarWarsDetailDataSource = self.trimmedVehicleDataSource[indexPath.row]
             
-            cell!.textLabel?.font = dataSource.attributeValueFont
-            cell!.detailTextLabel?.font = dataSource.attributeValueFont
+            cell!.textLabel?.font = dataSource.font(forElement: .value)
+            cell!.detailTextLabel?.font = dataSource.font(forElement: .value)
             
-            cell!.textLabel?.textColor = dataSource.attributeValueColor
-            cell!.detailTextLabel?.textColor = dataSource.attributeValueColor
+            cell!.textLabel?.textColor = dataSource.textColor(forElement: .value)
+            cell!.detailTextLabel?.textColor = dataSource.textColor(forElement: .value)
 
             
             let attrValueNameMapping: [StarWarsAttributeDisplay: String] = dataSource.attributeValueMappingPair.first!
@@ -113,11 +113,12 @@ extension StarWarsCharacterTransporterTableView: UITableViewDataSource {
             
             let dataSource: StarWarsDetailDataSource = self.trimmedStarshipDataSource[indexPath.row]
             
-            cell!.textLabel?.font = dataSource.attributeValueFont
-            cell!.detailTextLabel?.font = dataSource.attributeValueFont
             
-            cell!.textLabel?.textColor = dataSource.attributeValueColor
-            cell!.detailTextLabel?.textColor = dataSource.attributeValueColor
+            cell!.textLabel?.font = dataSource.font(forElement: .value)
+            cell!.detailTextLabel?.font = dataSource.font(forElement: .value)
+            
+            cell!.textLabel?.textColor = dataSource.textColor(forElement: .value)
+            cell!.detailTextLabel?.textColor = dataSource.textColor(forElement: .value)
             
             
             let attrValueNameMapping: [StarWarsAttributeDisplay: String] = dataSource.attributeValueMappingPair.first!

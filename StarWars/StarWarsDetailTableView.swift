@@ -20,6 +20,7 @@ class StarWarsDetailTableView: UITableView {
         
         tableViewDataSource = StarWarsDetailTableViewDataSource(withDetailDataSource: data)
         
+        
         super.init(frame: .zero, style: .plain)
         
         translatesAutoresizingMaskIntoConstraints = false

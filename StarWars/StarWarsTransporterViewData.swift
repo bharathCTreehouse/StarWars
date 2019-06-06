@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum CurrencyType {
     case credits
@@ -15,7 +16,8 @@ enum CurrencyType {
 
 
 
-class StarWarsTransporterViewData: StarWarsViewData {
+class StarWarsTransporterViewData: StarWarsViewData, StarWarsTransporterDetailDataSource {
+    
     
     let starWarsTransporter: Transporter
     var currency: CurrencyType
@@ -44,7 +46,12 @@ class StarWarsTransporterViewData: StarWarsViewData {
                  [.brand:starWarsTransporter.model], [.crew:starWarsTransporter.crew] ]
     }
     
+    
+    var unitForCost: CurrencyType {
+        return currency
+    }
 }
+
 
 
 extension StarWarsTransporterViewData {

@@ -22,9 +22,12 @@ class StarWarsTransporterViewController: StarWarsDetailViewController {
    
     init(withListOfTransporters transporters: [Transporter], nextSetUrlString urlString: String? = nil) {
         
-        super.init(withDetailDataSource: StarWarsTransporterViewData(withTransporter: transporters.first!), nextSetUrlString: urlString)
+        let transporterViewData: StarWarsTransporterViewData = StarWarsTransporterViewData(withTransporter: transporters.first!)
+        super.init(withDetailDataSource: transporterViewData, nextSetUrlString: urlString)
+        
         addLengthUnitToggleNotificationObserver()
         addCostUnitToggleNotificationObserver()
+        
         appendTransporterList(withNewTransporters: transporters)
     }
     

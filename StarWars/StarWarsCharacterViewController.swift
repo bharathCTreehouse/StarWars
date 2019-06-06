@@ -24,7 +24,9 @@ class StarWarsCharacterViewController: StarWarsDetailViewController {
     
     init(withListOfCharacters characters: [Character], nextSetUrlString urlString: String? = nil) {
         
-        super.init(withDetailDataSource: StarWarsCharacterViewData(withCharacter: characters.first!), nextSetUrlString: urlString)
+        let characterViewData: StarWarsCharacterViewData = StarWarsCharacterViewData(withCharacter: characters.first!)
+        super.init(withDetailDataSource: characterViewData, nextSetUrlString: urlString)
+        
         addLengthUnitToggleNotificationObserver()
         appendCharacterList(withNewCharacters: characters)
     }

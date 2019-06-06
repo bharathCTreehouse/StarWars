@@ -2,7 +2,7 @@
 //  StarWarsDetailDataSource.swift
 //  StarWars
 //
-//  Created by Bharath on 14/05/19.
+//  Created by Bharath on 06/06/19.
 //  Copyright © 2019 Bharath Chandrashekar. All rights reserved.
 //
 
@@ -10,112 +10,41 @@ import Foundation
 import UIKit
 
 
+enum  DetailUIElement {
+    case attribute
+    case value
+}
+
+
 protocol StarWarsDetailDataSource {
     
     var attributeValueMappingPair: [ [StarWarsAttributeDisplay: String] ] { get }
+    var unitForLengthOrHeight: UnitForLength { get }
     
-    //Separate protocol for this??
+    func font(forElement element: DetailUIElement) -> UIFont
+    func textColor(forElement element: DetailUIElement) -> UIColor
     
-    var attributeColor: UIColor { get }
-    var attributeFont: UIFont { get }
-    
-    var attributeValueColor: UIColor { get }
-    var attributeValueFont: UIFont { get }
 }
 
 
+protocol StarWarsTransporterDetailDataSource: StarWarsDetailDataSource {
+    var unitForCost: CurrencyType { get }
+}
 
-class StarWarsDetailTableViewDataSource: NSObject, UITableViewDataSource {
+
+extension StarWarsDetailDataSource {
     
-    private(set) var data: StarWarsDetailDataSource
-    
-    
-    required init(withDetailDataSource dataSource: StarWarsDetailDataSource) {
-        data = dataSource
-    }
-    
-    
-    func updateWithDataSource(_ dataSource:StarWarsDetailDataSource) {
-        data = dataSource
-    }
-    
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return data.attributeValueMappingPair.count
-    }
-    
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let mappingPair: [StarWarsAttributeDisplay: String] = data.attributeValueMappingPair[indexPath.row]
-        let attribute: StarWarsAttributeDisplay = mappingPair.keys.first!
-        
-        let isLastRow: Bool = (indexPath.row == data.attributeValueMappingPair.count-1) ? true : false
-        
-        if attribute.canBeConvertedToAlternateUnit == false {
-            
-            let cell: StarWarsDetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath) as! StarWarsDetailTableViewCell
-            
-            cell.attributeLabel.textColor = data.attributeColor
-            cell.attributeLabel.font = data.attributeFont
-            
-            cell.valueLabel.textColor = data.attributeValueColor
-            cell.valueLabel.font = data.attributeValueFont
-            
-            cell.attributeLabel.text = attribute.rawValue
-            cell.valueLabel.text = mappingPair.values.first!
-            
-            
-            if isLastRow == true {
-                cell.removeSeparator()
-            }
-            else {
-                cell.addDefaultSeparator()
-            }
-            
-            return cell
+    func font(forElement element: DetailUIElement) -> UIFont {
+        if element == .attribute {
+            return UIFont.systemFont(ofSize: UIFont.systemFontSize)
         }
         else {
-            
-            var cell: UITableViewCell
-            
-            if attribute == .length || attribute == .height {
-                
-                cell = tableView.dequeueReusableCell(withIdentifier: "lengthToggleCell", for: indexPath)
-                
-                let lengthUnitCell: StarWarsLengthUnitToggleTableViewCell = (cell as! StarWarsLengthUnitToggleTableViewCell)
-                
-                
-                lengthUnitCell.updateWith(dataMapper: mappingPair)
-                lengthUnitCell.updateWith(dataSource: data)
-                
-            }
-            else {
-                
-                //Cost
-                
-                cell = tableView.dequeueReusableCell(withIdentifier: "costToggleCell", for: indexPath)
-                
-                let costUnitCell: StarWarsCostUnitToggleTableViewCell = (cell as! StarWarsCostUnitToggleTableViewCell)
-                
-                
-                costUnitCell.updateWith(dataMapper: mappingPair)
-                costUnitCell.updateWith(dataSource: data)
-            }
-            
-            
-            if isLastRow == true {
-                cell.removeSeparator()
-            }
-            else {
-                cell.addDefaultSeparator()
-            }
-            
-            return cell
-            
+            return UIFont.systemFont(ofSize: UIFont.systemFontSize - 2.0)
         }
-        
     }
+    
+    func textColor(forElement element: DetailUIElement) -> UIColor {
+        return UIColor.black
+    }
+    
 }
-

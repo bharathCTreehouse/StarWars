@@ -35,30 +35,48 @@ class StarWarsViewData: StarWarsDetailDataSource {
     var currentLengthUnit: UnitForLength
     
     
+    
     init(withLengthValue value: String, lengthUnit unit: UnitForLength) {
         currentLengthValue = value
         currentLengthUnit = unit
     }
     
+    
+    
     var attributeValueMappingPair: [[StarWarsAttributeDisplay : String]] {
         return [[:]]
     }
     
-    var attributeColor: UIColor {
-        return UIColor(red: 123.0/155.0, green: 208.0/155.0, blue: 254.0/155.0, alpha: 1.0)
-    }
-    var attributeFont: UIFont {
-        return UIFont.boldSystemFont(ofSize: 18.0)
+    
+    var unitForLengthOrHeight: UnitForLength {
+        return currentLengthUnit
     }
     
     
-    var attributeValueColor: UIColor {
-        return UIColor(red: 230.0/155.0, green: 230.0/155.0, blue: 230.0/155.0, alpha: 1.0)
-    }
-    var attributeValueFont: UIFont {
-        return UIFont.boldSystemFont(ofSize: 17.0)
+    func font(forElement element: DetailUIElement) -> UIFont {
+        if element == .attribute {
+            return UIFont.boldSystemFont(ofSize: 18.0)
+        }
+        else {
+            return UIFont.boldSystemFont(ofSize: 17.0)
+        }
     }
     
+    
+    func textColor(forElement element: DetailUIElement) -> UIColor {
+        if element == .attribute {
+            return UIColor(red: 123.0/155.0, green: 208.0/155.0, blue: 254.0/155.0, alpha: 1.0)
+        }
+        else {
+            return UIColor(red: 230.0/155.0, green: 230.0/155.0, blue: 230.0/155.0, alpha: 1.0)
+        }
+    }
+}
+
+
+
+
+extension StarWarsViewData {
     
     
     func toggleLengthUnit() {
@@ -83,14 +101,14 @@ class StarWarsViewData: StarWarsDetailDataSource {
                 let value: NSNumber = (NSNumber(value: length / 39.37))
                 currentLengthValue = nf.string(from: value) ?? ""
                 currentLengthUnit = .metres
-
+                
             }
         }
         
     }
-    
-    
-    
-   
-    
 }
+
+
+
+
+

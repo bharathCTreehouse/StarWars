@@ -11,35 +11,13 @@ import UIKit
 
 
 
-class StarWarsCostUnitToggleTableViewCell: UITableViewCell {
-    
-    
-    lazy private var accessoryDetailView: StarWarsAccessoryDetailView = {
-        return StarWarsAccessoryDetailView(withDelegate: self)
-    }()
-    
+class StarWarsCostUnitToggleTableViewCell: StarWarsUnitToggleTableViewCell {
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         
-        
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        
-        self.contentView.addSubview(accessoryDetailView)
-        
-        accessoryDetailView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor).isActive = true
-        
-        accessoryDetailView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
-        
-        accessoryDetailView.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
-        
-        accessoryDetailView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor).isActive = true
-        
-        
         self.accessoryDetailView.view!.backgroundColor = UIColor.init(red: 26.0/155.0, green: 32.0/155.0, blue: 36.0/155.0, alpha: 1.0)
-        
-        
         selectionStyle = .none
 
         
@@ -51,60 +29,40 @@ class StarWarsCostUnitToggleTableViewCell: UITableViewCell {
     }
     
     
-    func updateWith(dataMapper attributeValueMapper: [StarWarsAttributeDisplay: String]) {
+    override func updateWith(dataMapper attributeValueMapper: [StarWarsAttributeDisplay: String]) {
         
-        accessoryDetailView.attributeLabel.text = attributeValueMapper.keys.first!.rawValue
-        accessoryDetailView.attributeValueLabel.text = attributeValueMapper.values.first!
+        super.updateWith(dataMapper: attributeValueMapper)
         validateSegmentControlState()
     }
     
     
-    func updateWith(dataSource data: StarWarsDetailDataSource) {
+    
+    func updateSegmentControl(forCurrency currency: CurrencyType) {
         
-        accessoryDetailView.attributeLabel.textColor = data.attributeColor
-        accessoryDetailView.attributeLabel.font = data.attributeFont
-        
-        accessoryDetailView.attributeValueLabel.textColor = data.attributeValueColor
-        accessoryDetailView.attributeValueLabel.font = data.attributeValueFont
-        
-        let baseSource: StarWarsTransporterViewData? = data as? StarWarsTransporterViewData
-        if baseSource?.currency == .credits {
+        if currency == .credits {
             accessoryDetailView.unitToggleSegmentControl.selectedSegmentIndex = 0
         }
         else {
             accessoryDetailView.unitToggleSegmentControl.selectedSegmentIndex = 1
-            
         }
     }
     
-    
-    
-    func validateSegmentControlState() {
-        
-        if let _ = Double(accessoryDetailView.attributeLabel.text ?? "") {
-            accessoryDetailView.unitToggleSegmentControl.isEnabled = false
-            accessoryDetailView.unitToggleSegmentControl.alpha = 0.4
-        }
-        else {
-            accessoryDetailView.unitToggleSegmentControl.isEnabled = true
-            accessoryDetailView.unitToggleSegmentControl.alpha = 1.0
-        }
-    }
 }
 
 
 
-extension StarWarsCostUnitToggleTableViewCell: StarWarsAccessoryButtonProtocol {
+extension StarWarsCostUnitToggleTableViewCell {
     
     
-    func toggleUnitSegmentControl(withSelectedIndex index: Int) {
+    override func toggleUnitSegmentControl(withSelectedIndex index: Int) {
         
+        super.toggleUnitSegmentControl(withSelectedIndex: index)
         NotificationCenter.default.post(name: NSNotification.Name("StarWarsCostUnitChanged"), object: nil)
 
     }
     
     
-    var segmentControlTitles: [String] {
+    override var segmentControlTitles: [String] {
         return ["Credits", "USD"]
     }
     

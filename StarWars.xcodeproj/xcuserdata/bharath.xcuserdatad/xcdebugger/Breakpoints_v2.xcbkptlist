@@ -25,13 +25,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "StarWars/StarWarsTransporterViewData.swift"
-            timestampString = "581196520.74031"
+            filePath = "StarWars/StarWarsCharacterViewController.swift"
+            timestampString = "581491685.318134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "toggleCurrency(withExchangeRate:)"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "lengthUnitToggleTriggered(withNotification:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StarWars/StarWarsCharacterViewController.swift"
+            timestampString = "581491685.318586"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "lengthUnitToggleTriggered(withNotification:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
