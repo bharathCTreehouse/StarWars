@@ -175,11 +175,10 @@ extension StarWarsTransporterViewController {
             
             apiClient.fetchAllTransporters(forRequest: urlReq, withCompletionHandler:  { [unowned self] (movables: [Transporter], nextUrlState: StarWarsNextSetUrlReceiverType, error: Error?) -> Void in
                 
-                self.pickerView.toggleAdditionalViewToInProgressState(false)
                 
                 switch nextUrlState {
-                case let .update(withUrlString:nextUrlStr):                 self.nextSetUrlString = nextUrlStr
-                default: break
+                    case let .update(withUrlString:nextUrlStr):                 self.nextSetUrlString = nextUrlStr
+                    default: break
                     
                 }
                 
@@ -197,6 +196,9 @@ extension StarWarsTransporterViewController {
                         self.showAlert(forError: error!)
                     }
                 }
+                
+                self.pickerView.toggleAdditionalViewToInProgressState(false)
+
                 
             })
         }

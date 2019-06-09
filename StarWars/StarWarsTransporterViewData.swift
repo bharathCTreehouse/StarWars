@@ -42,7 +42,7 @@ class StarWarsTransporterViewData: StarWarsViewData, StarWarsTransporterDetailDa
     
     override var attributeValueMappingPair: [[StarWarsAttributeDisplay : String]] {
         
-        return [ [.make:starWarsTransporter.manufacturer], [.cost:currencyValue], [.length:"\(Double(currentLengthValue) ?? 0.0) \(currentLengthUnit.displayValue)"],
+        return [ [.make:starWarsTransporter.manufacturer], [.cost:currencyValue], [.length:"\(currentLengthValue) \(currentLengthUnit.displayValue)"],
                  [.brand:starWarsTransporter.model], [.crew:starWarsTransporter.crew] ]
     }
     
@@ -73,17 +73,11 @@ extension StarWarsTransporterViewData {
                 //USD
                 //Need the exchange rate.
                 
-                let nf: NumberFormatter = NumberFormatter()
-                nf.maximumFractionDigits = 1
-                
                 let doubleCurrencyValue: Double = Double(starWarsTransporter.costInCredits)!
                 let dollarNumberValue: NSNumber = NSNumber(value: doubleCurrencyValue * rate)
-                
-                if let formattedStr = nf.string(from: dollarNumberValue) {
-                    currencyValue = "\(Double(formattedStr) ?? 0.0)"
-                }
-                else {
-                    currencyValue = "---"
+                let formattedStr: String = dollarNumberValue.stringValueConvertedToDoubleWith(maxFractionDigits: 1)
+                if formattedStr.isEmpty == false {
+                    currencyValue = formattedStr
                 }
                 currency = .USD
             }

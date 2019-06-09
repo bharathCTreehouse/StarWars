@@ -31,14 +31,24 @@ enum UnitForLength {
 
 class StarWarsViewData: StarWarsDetailDataSource {
     
-    var currentLengthValue: String
+    var currentLengthValue: String = "---"
     var currentLengthUnit: UnitForLength
-    
+
     
     
     init(withLengthValue value: String, lengthUnit unit: UnitForLength) {
-        currentLengthValue = value
+        
         currentLengthUnit = unit
+        
+        if let doubleValue = Double(value) {
+            
+            let numberValue: NSNumber = NSNumber(value: doubleValue)
+            let formattedValue: String = numberValue.stringValueConvertedToDoubleWith(maxFractionDigits: 1)
+            if formattedValue.isEmpty == false {
+                currentLengthValue = formattedValue
+            }
+        }
+       
     }
     
     
@@ -85,26 +95,35 @@ extension StarWarsViewData {
         
         if let length = length {
             
-            let nf: NumberFormatter = NumberFormatter()
-            nf.maximumFractionDigits = 1
+            var value: NSNumber = NSNumber(value: 0.0)
             
             if currentLengthUnit == .metres {
                 
                 //convert to inches
-                let value: NSNumber = (NSNumber(value: length * 39.37))
-                currentLengthValue = nf.string(from: value) ?? ""
+                value = (NSNumber(value: length * 39.37))
                 currentLengthUnit = .inches
             }
             else if currentLengthUnit == .inches {
                 
                 //convert to metres
-                let value: NSNumber = (NSNumber(value: length / 39.37))
-                currentLengthValue = nf.string(from: value) ?? ""
+                value = (NSNumber(value: length / 39.37))
                 currentLengthUnit = .metres
                 
             }
+            updateCurrentLengthValue(withNumber: value)
+
         }
         
+    }
+    
+    
+    
+    func updateCurrentLengthValue(withNumber value: NSNumber) {
+        
+        let formattedNumberStr: String = value.stringValueConvertedToDoubleWith(maxFractionDigits: 1)
+        if formattedNumberStr.isEmpty == false {
+            currentLengthValue = formattedNumberStr
+        }
     }
 }
 

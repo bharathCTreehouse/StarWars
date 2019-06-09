@@ -49,8 +49,14 @@ class StarWarsCharacterTransporterViewController: UIViewController {
         
         super.viewDidLoad()
         
-        fetchVehiclesOfSelectedCharacter()
-        fetchStarshipsOfSelectedCharacter()
+        if person.vehicles.isEmpty == true && person.starships.isEmpty == true {
+            
+            self.showAlertController(withAlertTitle: nil, alertMessage: "No vehicles or starships to show.", defaultStyleButtonTitle: "OK")
+        }
+        else {
+            fetchVehiclesOfSelectedCharacter()
+            fetchStarshipsOfSelectedCharacter()
+        }
         setupNavigationItem()
     }
     

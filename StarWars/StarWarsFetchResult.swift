@@ -12,7 +12,7 @@ import Foundation
 class StarWarsFetchResult: Decodable {
     
     let count: Int
-    let next: String
+    let next: String?
     let previous: String?
 }
 

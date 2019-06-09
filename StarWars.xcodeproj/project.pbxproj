@@ -33,6 +33,7 @@
 		8E32B0F3229E5FA6001D1907 /* AlertControllerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E32B0F2229E5FA6001D1907 /* AlertControllerData.swift */; };
 		8E32B0F5229E5FFD001D1907 /* AlertControllerActionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E32B0F4229E5FFD001D1907 /* AlertControllerActionData.swift */; };
 		8E4DD50A22A92AEA006C4BE1 /* StarWarsDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DD50922A92AEA006C4BE1 /* StarWarsDetailDataSource.swift */; };
+		8E4DD50C22AAE6D7006C4BE1 /* NSNumberUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DD50B22AAE6D7006C4BE1 /* NSNumberUtilities.swift */; };
 		8E69B296229F15B90012DA6A /* ViewControllerWithAlertControllerUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E69B295229F15B90012DA6A /* ViewControllerWithAlertControllerUtilities.swift */; };
 		8E69B29822A12F1A0012DA6A /* AlertControllerTextFieldData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E69B29722A12F1A0012DA6A /* AlertControllerTextFieldData.swift */; };
 		8E6DA7F5228E9382000C185B /* StarWarsAccessoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6DA7F4228E9382000C185B /* StarWarsAccessoryDetailView.swift */; };
@@ -92,6 +93,7 @@
 		8E32B0F2229E5FA6001D1907 /* AlertControllerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerData.swift; sourceTree = "<group>"; };
 		8E32B0F4229E5FFD001D1907 /* AlertControllerActionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerActionData.swift; sourceTree = "<group>"; };
 		8E4DD50922A92AEA006C4BE1 /* StarWarsDetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsDetailDataSource.swift; sourceTree = "<group>"; };
+		8E4DD50B22AAE6D7006C4BE1 /* NSNumberUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNumberUtilities.swift; sourceTree = "<group>"; };
 		8E69B295229F15B90012DA6A /* ViewControllerWithAlertControllerUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerWithAlertControllerUtilities.swift; sourceTree = "<group>"; };
 		8E69B29722A12F1A0012DA6A /* AlertControllerTextFieldData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerTextFieldData.swift; sourceTree = "<group>"; };
 		8E6DA7F4228E9382000C185B /* StarWarsAccessoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsAccessoryDetailView.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				8E6DA7F82291B2AC000C185B /* SelectionPickerView.swift */,
 				8E2FA1E2229C73A300CD7314 /* UITableViewCellUtilities.swift */,
 				8E954877229EB47A003CAB2A /* ErrorUtilities.swift */,
+				8E4DD50B22AAE6D7006C4BE1 /* NSNumberUtilities.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -225,6 +228,27 @@
 			name = AlertControllers;
 			sourceTree = "<group>";
 		};
+		8E4DD50D22ACDE38006C4BE1 /* Facts */ = {
+			isa = PBXGroup;
+			children = (
+				8EDD90DB2292798000C69FA3 /* StarWarsFactsView.swift */,
+				8EDD90DD229279CC00C69FA3 /* StarWarsFactsView.xib */,
+			);
+			name = Facts;
+			sourceTree = "<group>";
+		};
+		8E4DD50E22ACDE7C006C4BE1 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				8E9B67F022A6D20700C25586 /* StarWarsUnitToggleTableViewCell.swift */,
+				8E1811C4228D3053005BAD61 /* StarWarsLengthUnitToggleTableViewCell.swift */,
+				8E1811C6228D3132005BAD61 /* StarWarsCostUnitToggleTableViewCell.swift */,
+				8EEF2F7E228AFF070083679E /* StarWarsDetailTableViewCell.swift */,
+				8EEF2F7F228AFF070083679E /* StarWarsDetailTableViewCell.xib */,
+			);
+			name = TableViewCells;
+			sourceTree = "<group>";
+		};
 		8EEF2F86228B06740083679E /* DetailScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,19 +266,14 @@
 		8EEF2F87228B068E0083679E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8EEF2F7E228AFF070083679E /* StarWarsDetailTableViewCell.swift */,
-				8EEF2F7F228AFF070083679E /* StarWarsDetailTableViewCell.xib */,
+				8E4DD50E22ACDE7C006C4BE1 /* TableViewCells */,
+				8E4DD50D22ACDE38006C4BE1 /* Facts */,
 				8EEF2F7A228AFE0A0083679E /* StarWarsDetailTableView.swift */,
-				8E1811C4228D3053005BAD61 /* StarWarsLengthUnitToggleTableViewCell.swift */,
-				8E1811C6228D3132005BAD61 /* StarWarsCostUnitToggleTableViewCell.swift */,
 				8E6DA7F4228E9382000C185B /* StarWarsAccessoryDetailView.swift */,
 				8E6DA7F6228E9396000C185B /* StarWarsAccessoryDetailView.xib */,
-				8EDD90DB2292798000C69FA3 /* StarWarsFactsView.swift */,
-				8EDD90DD229279CC00C69FA3 /* StarWarsFactsView.xib */,
 				8E9E6C3B22970C5F000CCDDF /* StarWarsActivityIndicatorView.swift */,
 				8E9E6C3D22970C89000CCDDF /* StarWarsActivityIndicatorView.xib */,
 				8E18B2812299354F00705CDF /* StarWarsCharacterTransporterTableView.swift */,
-				8E9B67F022A6D20700C25586 /* StarWarsUnitToggleTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -433,6 +452,7 @@
 				8E89A17122932E71002FCD68 /* StarWarsFetchOperation.swift in Sources */,
 				8EEF2F8F228B0A020083679E /* StarWarsDetailTableViewDataSource.swift in Sources */,
 				8E32B0F3229E5FA6001D1907 /* AlertControllerData.swift in Sources */,
+				8E4DD50C22AAE6D7006C4BE1 /* NSNumberUtilities.swift in Sources */,
 				8E7A906F2289F9C000292F83 /* StarWarsFetchResult.swift in Sources */,
 				8E2FA1E3229C73A300CD7314 /* UITableViewCellUtilities.swift in Sources */,
 				8E7A906D2289D12B00292F83 /* StarWarsAPIClient.swift in Sources */,

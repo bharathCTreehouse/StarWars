@@ -181,7 +181,6 @@ extension StarWarsCharacterViewController {
             
             apiClient.fetchAllCharacters(forRequest: urlReq, withCompletionHandler:  { [unowned self] (people: [Character], nextUrlState: StarWarsNextSetUrlReceiverType, error: Error?) -> Void in
                 
-                self.pickerView.toggleAdditionalViewToInProgressState(false)
                 
                 switch nextUrlState {
                     case let .update(withUrlString:nextUrlStr):                 self.nextSetUrlString = nextUrlStr
@@ -204,6 +203,9 @@ extension StarWarsCharacterViewController {
                         self.showAlert(forError: error!)
                     }
                 }
+                
+                self.pickerView.toggleAdditionalViewToInProgressState(false)
+
                 
             })
         }

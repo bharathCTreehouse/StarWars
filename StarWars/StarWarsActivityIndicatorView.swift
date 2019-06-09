@@ -117,6 +117,7 @@ class StarWarsActivityIndicatorView: UIView {
         else {
             activityIndicatorView.stopAnimating()
         }
+        button.isEnabled = !animate
     }
     
     
